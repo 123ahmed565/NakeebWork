@@ -56,7 +56,7 @@
                 <span :class="{'lg:hidden': !isSidebarOpen}">Category</span>
             </span> -->
                     <button @click="toggleSidbarMenu()" class="p-2 rounded-md lg:hidden">
-                        <svg class="w-6 h-6 text-gray-600" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        <svg class="w-6 h-6 tetext-[#a7aab9]xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M6 18L18 6M6 6l12 12" />
@@ -244,14 +244,15 @@
                         </div>
                         <div class="flex items-center space-x-3">
                             <!-- buttons General -->
-                            <button class="flex items-center bg-[#d5d6db] rounded-full pl-4 pr-4 pt-2 pb-2">
-                                <img class="w-8 h-7" src="./images/header/heart.png" alt="save image" loading="lazy">
-                                <P class="capitalize ml-2 font-semibold text-gray-700">saved</P>
+                            <button class="flex items-center bg-[#d5d6db] rounded-full pl-4 pr-4 pt-2 pb-2 capitalize ml-2 font-semibold text-gray-700 hover:text-[#4285f4] transition duration-150 ease-out">
+                                <!-- <img class="w-8 h-7" src="./images/header/heart.png" alt="save image" loading="lazy"> -->
+                                <i class="fas fa-heart mr-2"></i>
+                                saved
                             </button>
-                            <button class="flex items-center bg-[#d5d6db] rounded-full pl-4 pr-4 pt-2 pb-2">
-                                <img class="w-8 h-7" src="./images/header/contact.png" alt="contact image"
-                                    loading="lazy">
-                                <P class="capitalize ml-2 font-semibold text-gray-700">contact</P>
+                            <button class="flex items-center bg-[#d5d6db] rounded-full pl-4 pr-4 pt-2 pb-2 capitalize ml-2 font-semibold text-gray-700 hover:text-[#4285f4] transition duration-150 ease-out">
+                                <!-- <img class="w-8 h-7" src="./images/header/contact.png" alt="contact image" loading="lazy"> -->
+                                <i class="fas fa-envelope mr-2"></i>
+                                contact
                             </button>
                         </div>
                     </div>
@@ -266,7 +267,6 @@
                     </div>
                 </div>
             </header>
-
             <!-- Main content -->
             <main class="flex-1 max-h-full p-5 overflow-hidden overflow-y-scroll">
 
@@ -355,161 +355,205 @@
 
                         <!-- Icons -->
                         <div
-                            class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 p-1 md:p-3 overflow-y-auto md:h-[27rem]">
+                            class="flex flex-wrap overflow-y-auto md:h-[27rem]">
                             <!-- single Icon -->
                             <div
-                                class="relative mx-auto p-3 mt-2 text-center rounded-xl bg-[#f4f7fc] max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
+                                class="p-3 mt-2 text-center rounded-xl bg-[#f4f7fc] max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
                                 <!-- image -->
                                 <img loading="lazy" class="mt-6 rounded w-full h-24 object-contain"
                                     src="./images/iconImage/iconImage.svg" alt="icon Image" loading="lazy">
                                     <!-- icons -->
                                     <div class="flex items-center justify-center ms:justify-start space-x-4 mt-3">
-                                        <a title="Save" class="bg-white rounded w-10 h-8"><i class="far fa-heart text-[#a7aab9] text-xl"></i></a >
-                                        <a title="view" class="bg-white rounded w-10 h-8"><i class="far fa-eye text-[#a7aab9] text-xl"></i></a >
-                                        <a title="download" class="bg-white rounded w-10 h-8"><i class="fas fa-download text-[#a7aab9] text-xl"></i></a >
+                                        <a title="Save" class="bg-white rounded w-10 h-8"><i class="far fa-heart text-[#a7aab9] text-xl hover:text-[#4285f4]"></i></a >
+                                        <!-- modal popup view Icon -->
+                                        <a x-data="{ open: false }" title="view">
+                                            <button x-on:click="open = true"
+                                                class="bg-white rounded w-10 h-8">
+                                                <i class="far fa-eye text-[#a7aab9] text-xl hover:text-[#4285f4]"></i>
+                                            </button>
+                                            <!-- Modal product -->
+                                            <div x-show="open" x-on:keydown.escape.prevent.stop="open = false" role="dialog"
+                                            aria-modal="true" x-id="['modal-title']" :aria-labelledby="$id('modal-title')"
+                                            class="fixed inset-0 overflow-y-auto">
+                                            <!-- Overlay -->
+                                            <div x-show="open" x-transition.opacity class="fixed inset-0 bg-black bg-opacity-50"></div>
+                    
+                                            <!-- Panel -->
+                                            <div x-show="open" x-transition x-on:click="open = false"
+                                                class="relative min-h-screen flex items-center justify-center p-2 md:p-4">
+                                                <div x-on:click.stop x-trap.noscroll.inert="open"
+                                                    class="relative max-w-sm w-full p-4 overflow-y-auto rounded-xl bg-white">
+                                                    <!-- Title -->
+                                                    <div class="flex justify-between bg-white rounded-xl">
+                                                        <h2 class="text-md font-semibold capitalize" :id="$id('modal-title')">quick view</h2>
+                                                        <svg x-on:click="open = false" xmlns="http://www.w3.org/2000/svg" width="25"
+                                                        height="25" fill="black"
+                                                        class="bi bi-x cursor-pointer w-6 rounded-full" viewBox="0 0 16 16">
+                                                        <path
+                                                        d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                                                        </svg>
+                                                    </div>
+                                                    <!-- Content -->
+                                                    <div class="block mt-10">
+                                                        <img class="mx-auto w-48 h-36" src="./images/iconImage/iconImage.svg" alt="icon image" loading="lazy">
+                                                        <div class="flex items-center mt-10 space-x-4">
+                                                            <button class="bg-[#f4f7fc] pl-3 pr-3 pt-2 pb-2 rounded uppercase text-xl font-semibold text-[#a7aab9]">pdf</button>
+                                                            <button class="bg-[#f4f7fc] pl-3 pr-3 pt-2 pb-2 rounded uppercase text-xl font-semibold text-[#a7aab9]">jpg</button>
+                                                            <button class="bg-[#f4f7fc] pl-3 pr-3 pt-2 pb-2 rounded uppercase text-xl font-semibold text-[#a7aab9]">png</button>
+                                                            <button class="bg-[#f4f7fc] pl-3 pr-3 pt-2 pb-2 rounded uppercase text-xl font-semibold text-[#a7aab9]">svg</button>
+                                                            <button class="bg-[#f4f7fc] pl-3 pr-3 pt-2 pb-2 rounded font-semibold text-[#a7aab9]">
+                                                                <i class="far fa-heart text-[#a7aab9] text-xl"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </a>
+                                        <a title="download" class="bg-white rounded w-10 h-8"><i class="fas fa-download text-[#a7aab9] text-xl hover:text-[#4285f4]"></i></a >
                                     </div>
                             </div>
                             <!-- single Icon -->
                             <div
-                                class="relative mx-auto p-3 mt-2 text-center rounded-xl bg-[#f4f7fc] max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
+                                class="p-3 mt-2 text-center rounded-xl bg-[#f4f7fc] max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
                                 <!-- image -->
                                 <img loading="lazy" class="mt-6 rounded w-full h-24 object-contain"
                                     src="./images/iconImage/iconImage.svg" alt="icon Image" loading="lazy">
                                     <!-- icons -->
                                     <div class="flex items-center justify-center ms:justify-start space-x-4 mt-3">
-                                        <a title="Save" class="bg-white rounded w-10 h-8"><i class="far fa-heart text-[#a7aab9] text-xl"></i></a >
-                                        <a title="view" class="bg-white rounded w-10 h-8"><i class="far fa-eye text-[#a7aab9] text-xl"></i></a >
-                                        <a title="download" class="bg-white rounded w-10 h-8"><i class="fas fa-download text-[#a7aab9] text-xl"></i></a >
+                                        <a title="Save" class="bg-white rounded w-10 h-8"><i class="far fa-heart text-[#a7aab9] text-xl hover:text-[#4285f4]"></i></a >
+                                        <a title="view" class="bg-white rounded w-10 h-8"><i class="far fa-eye text-[#a7aab9] text-xl hover:text-[#4285f4]"></i></a >
+                                        <a title="download" class="bg-white rounded w-10 h-8"><i class="fas fa-download text-[#a7aab9] text-xl hover:text-[#4285f4]"></i></a >
                                     </div>
                             </div>
                             <!-- single Icon -->
                             <div
-                                class="relative mx-auto p-3 mt-2 text-center rounded-xl bg-[#f4f7fc] max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
+                                class="p-3 mt-2 text-center rounded-xl bg-[#f4f7fc] max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
                                 <!-- image -->
                                 <img loading="lazy" class="mt-6 rounded w-full h-24 object-contain"
                                     src="./images/iconImage/iconImage.svg" alt="icon Image" loading="lazy">
                                     <!-- icons -->
                                     <div class="flex items-center justify-center ms:justify-start space-x-4 mt-3">
-                                        <a title="Save" class="bg-white rounded w-10 h-8"><i class="far fa-heart text-[#a7aab9] text-xl"></i></a >
-                                        <a title="view" class="bg-white rounded w-10 h-8"><i class="far fa-eye text-[#a7aab9] text-xl"></i></a >
-                                        <a title="download" class="bg-white rounded w-10 h-8"><i class="fas fa-download text-[#a7aab9] text-xl"></i></a >
+                                        <a title="Save" class="bg-white rounded w-10 h-8"><i class="far fa-heart text-[#a7aab9] text-xl hover:text-[#4285f4]"></i></a >
+                                        <a title="view" class="bg-white rounded w-10 h-8"><i class="far fa-eye text-[#a7aab9] text-xl hover:text-[#4285f4]"></i></a >
+                                        <a title="download" class="bg-white rounded w-10 h-8"><i class="fas fa-download text-[#a7aab9] text-xl hover:text-[#4285f4]"></i></a >
                                     </div>
                             </div>
                             <!-- single Icon -->
                             <div
-                                class="relative mx-auto p-3 mt-2 text-center rounded-xl bg-[#f4f7fc] max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
+                                class="p-3 mt-2 text-center rounded-xl bg-[#f4f7fc] max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
                                 <!-- image -->
                                 <img loading="lazy" class="mt-6 rounded w-full h-24 object-contain"
                                     src="./images/iconImage/iconImage.svg" alt="icon Image" loading="lazy">
                                     <!-- icons -->
                                     <div class="flex items-center justify-center ms:justify-start space-x-4 mt-3">
-                                        <a title="Save" class="bg-white rounded w-10 h-8"><i class="far fa-heart text-[#a7aab9] text-xl"></i></a >
-                                        <a title="view" class="bg-white rounded w-10 h-8"><i class="far fa-eye text-[#a7aab9] text-xl"></i></a >
-                                        <a title="download" class="bg-white rounded w-10 h-8"><i class="fas fa-download text-[#a7aab9] text-xl"></i></a >
+                                        <a title="Save" class="bg-white rounded w-10 h-8"><i class="far fa-heart text-[#a7aab9] text-xl hover:text-[#4285f4]"></i></a >
+                                        <a title="view" class="bg-white rounded w-10 h-8"><i class="far fa-eye text-[#a7aab9] text-xl hover:text-[#4285f4]"></i></a >
+                                        <a title="download" class="bg-white rounded w-10 h-8"><i class="fas fa-download text-[#a7aab9] text-xl hover:text-[#4285f4]"></i></a >
                                     </div>
                             </div>
                             <!-- single Icon -->
                             <div
-                                class="relative mx-auto p-3 mt-2 text-center rounded-xl bg-[#f4f7fc] max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
+                                class="p-3 mt-2 text-center rounded-xl bg-[#f4f7fc] max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
                                 <!-- image -->
                                 <img loading="lazy" class="mt-6 rounded w-full h-24 object-contain"
                                     src="./images/iconImage/iconImage.svg" alt="icon Image" loading="lazy">
                                     <!-- icons -->
                                     <div class="flex items-center justify-center ms:justify-start space-x-4 mt-3">
-                                        <a title="Save" class="bg-white rounded w-10 h-8"><i class="far fa-heart text-[#a7aab9] text-xl"></i></a >
-                                        <a title="view" class="bg-white rounded w-10 h-8"><i class="far fa-eye text-[#a7aab9] text-xl"></i></a >
-                                        <a title="download" class="bg-white rounded w-10 h-8"><i class="fas fa-download text-[#a7aab9] text-xl"></i></a >
+                                        <a title="Save" class="bg-white rounded w-10 h-8"><i class="far fa-heart text-[#a7aab9] text-xl hover:text-[#4285f4]"></i></a >
+                                        <a title="view" class="bg-white rounded w-10 h-8"><i class="far fa-eye text-[#a7aab9] text-xl hover:text-[#4285f4]"></i></a >
+                                        <a title="download" class="bg-white rounded w-10 h-8"><i class="fas fa-download text-[#a7aab9] text-xl hover:text-[#4285f4]"></i></a >
                                     </div>
                             </div>
                             <!-- single Icon -->
                             <div
-                                class="relative mx-auto p-3 mt-2 text-center rounded-xl bg-[#f4f7fc] max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
+                                class="p-3 mt-2 text-center rounded-xl bg-[#f4f7fc] max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
                                 <!-- image -->
                                 <img loading="lazy" class="mt-6 rounded w-full h-24 object-contain"
                                     src="./images/iconImage/iconImage.svg" alt="icon Image" loading="lazy">
                                     <!-- icons -->
                                     <div class="flex items-center justify-center ms:justify-start space-x-4 mt-3">
-                                        <a title="Save" class="bg-white rounded w-10 h-8"><i class="far fa-heart text-[#a7aab9] text-xl"></i></a >
-                                        <a title="view" class="bg-white rounded w-10 h-8"><i class="far fa-eye text-[#a7aab9] text-xl"></i></a >
-                                        <a title="download" class="bg-white rounded w-10 h-8"><i class="fas fa-download text-[#a7aab9] text-xl"></i></a >
+                                        <a title="Save" class="bg-white rounded w-10 h-8"><i class="far fa-heart text-[#a7aab9] text-xl hover:text-[#4285f4]"></i></a >
+                                        <a title="view" class="bg-white rounded w-10 h-8"><i class="far fa-eye text-[#a7aab9] text-xl hover:text-[#4285f4]"></i></a >
+                                        <a title="download" class="bg-white rounded w-10 h-8"><i class="fas fa-download text-[#a7aab9] text-xl hover:text-[#4285f4]"></i></a >
                                     </div>
                             </div>
                             <!-- single Icon -->
                             <div
-                                class="relative mx-auto p-3 mt-2 text-center rounded-xl bg-[#f4f7fc] max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
+                                class="p-3 mt-2 text-center rounded-xl bg-[#f4f7fc] max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
                                 <!-- image -->
                                 <img loading="lazy" class="mt-6 rounded w-full h-24 object-contain"
                                     src="./images/iconImage/iconImage.svg" alt="icon Image" loading="lazy">
                                     <!-- icons -->
                                     <div class="flex items-center justify-center ms:justify-start space-x-4 mt-3">
-                                        <a title="Save" class="bg-white rounded w-10 h-8"><i class="far fa-heart text-[#a7aab9] text-xl"></i></a >
-                                        <a title="view" class="bg-white rounded w-10 h-8"><i class="far fa-eye text-[#a7aab9] text-xl"></i></a >
-                                        <a title="download" class="bg-white rounded w-10 h-8"><i class="fas fa-download text-[#a7aab9] text-xl"></i></a >
+                                        <a title="Save" class="bg-white rounded w-10 h-8"><i class="far fa-heart text-[#a7aab9] text-xl hover:text-[#4285f4]"></i></a >
+                                        <a title="view" class="bg-white rounded w-10 h-8"><i class="far fa-eye text-[#a7aab9] text-xl hover:text-[#4285f4]"></i></a >
+                                        <a title="download" class="bg-white rounded w-10 h-8"><i class="fas fa-download text-[#a7aab9] text-xl hover:text-[#4285f4]"></i></a >
                                     </div>
                             </div>
                             <!-- single Icon -->
                             <div
-                                class="relative mx-auto p-3 mt-2 text-center rounded-xl bg-[#f4f7fc] max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
+                                class="p-3 mt-2 text-center rounded-xl bg-[#f4f7fc] max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
                                 <!-- image -->
                                 <img loading="lazy" class="mt-6 rounded w-full h-24 object-contain"
                                     src="./images/iconImage/iconImage.svg" alt="icon Image" loading="lazy">
                                     <!-- icons -->
                                     <div class="flex items-center justify-center ms:justify-start space-x-4 mt-3">
-                                        <a title="Save" class="bg-white rounded w-10 h-8"><i class="far fa-heart text-[#a7aab9] text-xl"></i></a >
-                                        <a title="view" class="bg-white rounded w-10 h-8"><i class="far fa-eye text-[#a7aab9] text-xl"></i></a >
-                                        <a title="download" class="bg-white rounded w-10 h-8"><i class="fas fa-download text-[#a7aab9] text-xl"></i></a >
+                                        <a title="Save" class="bg-white rounded w-10 h-8"><i class="far fa-heart text-[#a7aab9] text-xl hover:text-[#4285f4]"></i></a >
+                                        <a title="view" class="bg-white rounded w-10 h-8"><i class="far fa-eye text-[#a7aab9] text-xl hover:text-[#4285f4]"></i></a >
+                                        <a title="download" class="bg-white rounded w-10 h-8"><i class="fas fa-download text-[#a7aab9] text-xl hover:text-[#4285f4]"></i></a >
                                     </div>
                             </div>
                             <!-- single Icon -->
                             <div
-                                class="relative mx-auto p-3 mt-2 text-center rounded-xl bg-[#f4f7fc] max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
+                                class="p-3 mt-2 text-center rounded-xl bg-[#f4f7fc] max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
                                 <!-- image -->
                                 <img loading="lazy" class="mt-6 rounded w-full h-24 object-contain"
                                     src="./images/iconImage/iconImage.svg" alt="icon Image" loading="lazy">
                                     <!-- icons -->
                                     <div class="flex items-center justify-center ms:justify-start space-x-4 mt-3">
-                                        <a title="Save" class="bg-white rounded w-10 h-8"><i class="far fa-heart text-[#a7aab9] text-xl"></i></a >
-                                        <a title="view" class="bg-white rounded w-10 h-8"><i class="far fa-eye text-[#a7aab9] text-xl"></i></a >
-                                        <a title="download" class="bg-white rounded w-10 h-8"><i class="fas fa-download text-[#a7aab9] text-xl"></i></a >
+                                        <a title="Save" class="bg-white rounded w-10 h-8"><i class="far fa-heart text-[#a7aab9] text-xl hover:text-[#4285f4]"></i></a >
+                                        <a title="view" class="bg-white rounded w-10 h-8"><i class="far fa-eye text-[#a7aab9] text-xl hover:text-[#4285f4]"></i></a >
+                                        <a title="download" class="bg-white rounded w-10 h-8"><i class="fas fa-download text-[#a7aab9] text-xl hover:text-[#4285f4]"></i></a >
                                     </div>
                             </div>
                             <!-- single Icon -->
                             <div
-                                class="relative mx-auto p-3 mt-2 text-center rounded-xl bg-[#f4f7fc] max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
+                                class="p-3 mt-2 text-center rounded-xl bg-[#f4f7fc] max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
                                 <!-- image -->
                                 <img loading="lazy" class="mt-6 rounded w-full h-24 object-contain"
                                     src="./images/iconImage/iconImage.svg" alt="icon Image" loading="lazy">
                                     <!-- icons -->
                                     <div class="flex items-center justify-center ms:justify-start space-x-4 mt-3">
-                                        <a title="Save" class="bg-white rounded w-10 h-8"><i class="far fa-heart text-[#a7aab9] text-xl"></i></a >
-                                        <a title="view" class="bg-white rounded w-10 h-8"><i class="far fa-eye text-[#a7aab9] text-xl"></i></a >
-                                        <a title="download" class="bg-white rounded w-10 h-8"><i class="fas fa-download text-[#a7aab9] text-xl"></i></a >
+                                        <a title="Save" class="bg-white rounded w-10 h-8"><i class="far fa-heart text-[#a7aab9] text-xl hover:text-[#4285f4]"></i></a >
+                                        <a title="view" class="bg-white rounded w-10 h-8"><i class="far fa-eye text-[#a7aab9] text-xl hover:text-[#4285f4]"></i></a >
+                                        <a title="download" class="bg-white rounded w-10 h-8"><i class="fas fa-download text-[#a7aab9] text-xl hover:text-[#4285f4]"></i></a >
                                     </div>
                             </div>
                             <!-- single Icon -->
                             <div
-                                class="relative mx-auto p-3 mt-2 text-center rounded-xl bg-[#f4f7fc] max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
+                                class="p-3 mt-2 text-center rounded-xl bg-[#f4f7fc] max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
                                 <!-- image -->
                                 <img loading="lazy" class="mt-6 rounded w-full h-24 object-contain"
                                     src="./images/iconImage/iconImage.svg" alt="icon Image" loading="lazy">
                                     <!-- icons -->
                                     <div class="flex items-center justify-center ms:justify-start space-x-4 mt-3">
-                                        <a title="Save" class="bg-white rounded w-10 h-8"><i class="far fa-heart text-[#a7aab9] text-xl"></i></a >
-                                        <a title="view" class="bg-white rounded w-10 h-8"><i class="far fa-eye text-[#a7aab9] text-xl"></i></a >
-                                        <a title="download" class="bg-white rounded w-10 h-8"><i class="fas fa-download text-[#a7aab9] text-xl"></i></a >
+                                        <a title="Save" class="bg-white rounded w-10 h-8"><i class="far fa-heart text-[#a7aab9] text-xl hover:text-[#4285f4]"></i></a >
+                                        <a title="view" class="bg-white rounded w-10 h-8"><i class="far fa-eye text-[#a7aab9] text-xl hover:text-[#4285f4]"></i></a >
+                                        <a title="download" class="bg-white rounded w-10 h-8"><i class="fas fa-download text-[#a7aab9] text-xl hover:text-[#4285f4]"></i></a >
                                     </div>
                             </div>
                             <!-- single Icon -->
                             <div
-                                class="relative mx-auto p-3 mt-2 text-center rounded-xl bg-[#f4f7fc] max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
+                                class="p-3 mt-2 text-center rounded-xl bg-[#f4f7fc] max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
                                 <!-- image -->
                                 <img loading="lazy" class="mt-6 rounded w-full h-24 object-contain"
                                     src="./images/iconImage/iconImage.svg" alt="icon Image" loading="lazy">
                                     <!-- icons -->
                                     <div class="flex items-center justify-center ms:justify-start space-x-4 mt-3">
-                                        <a title="Save" class="bg-white rounded w-10 h-8"><i class="far fa-heart text-[#a7aab9] text-xl"></i></a >
-                                        <a title="view" class="bg-white rounded w-10 h-8"><i class="far fa-eye text-[#a7aab9] text-xl"></i></a >
-                                        <a title="download" class="bg-white rounded w-10 h-8"><i class="fas fa-download text-[#a7aab9] text-xl"></i></a >
+                                        <a title="Save" class="bg-white rounded w-10 h-8"><i class="far fa-heart text-[#a7aab9] text-xl hover:text-[#4285f4]"></i></a >
+                                        <a title="view" class="bg-white rounded w-10 h-8"><i class="far fa-eye text-[#a7aab9] text-xl hover:text-[#4285f4]"></i></a >
+                                        <a title="download" class="bg-white rounded w-10 h-8"><i class="fas fa-download text-[#a7aab9] text-xl hover:text-[#4285f4]"></i></a >
                                     </div>
                             </div>
                         </div>
@@ -554,6 +598,9 @@
                 extend: {
                     colors: {
                         'mainColor': '#ff440f',
+                    },
+                    gap: {
+                        '11': '2.75rem',
                     }
                 }
             },
