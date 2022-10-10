@@ -10,892 +10,533 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="./style/style.css" type="text/html">
     <title>Nakeeb | Icon</title>
 </head>
 
 <body>
 
 
-<!-- start home page -->
-<div class="flex h-screen overflow-y-hidden bg-white" x-data="setup()" x-init="$refs.loading.classList.add('hidden')">
-    <!-- Loading screen -->
-    <!-- <div x-ref="loading"
+    <!-- start home page -->
+    <div class="flex h-screen overflow-y-hidden bg-white" x-data="setup()"
+        x-init="$refs.loading.classList.add('hidden')">
+        <!-- Loading screen -->
+        <!-- <div x-ref="loading"
         class="fixed inset-0 z-50 flex items-center justify-center text-white bg-white bg-opacity-50"
         style="backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px)">
         <img loading="lazy"src="./images/login/logo.svg" alt="image logo">
     </div> -->
 
-    <!-- Sidebar backdrop -->
-    <div x-show.in.out.opacity="isSidebarOpen" class="fixed inset-0 z-10 bg-black bg-opacity-20 lg:hidden"
-        style="backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px)"></div>
+        <!-- Sidebar backdrop -->
+        <div x-show.in.out.opacity="isSidebarOpen" class="fixed inset-0 z-10 bg-black bg-opacity-20 lg:hidden"
+            style="backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px)"></div>
 
-    <!-- Sidebar -->
-    <aside x-cloak x-transition:enter="transition transform duration-300"
-        x-transition:enter-start="-translate-x-full opacity-30  ease-in"
-        x-transition:enter-end="translate-x-0 opacity-100 ease-out"
-        x-transition:leave="transition transform duration-300"
-        x-transition:leave-start="translate-x-0 opacity-100 ease-out"
-        x-transition:leave-end="-translate-x-full opacity-0 ease-in"
-        class="fixed inset-y-0 z-20 flex flex-col flex-shrink-0 w-64 max-h-screen overflow-hidden transition-all transform bg-white shadow-lg lg:z-auto lg:static lg:shadow-none"
-        :class="{'-translate-x-full lg:translate-x-0 lg:w-20': !isSidebarOpen}">
-    <aside x-cloak x-transition:enter="transition transform duration-300"
-        x-transition:enter-start="-translate-x-full opacity-30  ease-in"
-        x-transition:enter-end="translate-x-0 opacity-100 ease-out"
-        x-transition:leave="transition transform duration-300"
-        x-transition:leave-start="translate-x-0 opacity-100 ease-out"
-        x-transition:leave-end="-translate-x-full opacity-0 ease-in"
-        class="fixed inset-y-0 z-20 flex flex-col flex-shrink-0 w-64 max-h-screen overflow-hidden transition-all transform bg-white shadow-lg lg:z-auto lg:static lg:shadow-none"
-        :class="{'-translate-x-full lg:translate-x-0 lg:w-20': !isSidebarOpen}">
-        <!-- sidebar header -->
-        <div class="flex items-center justify-between flex-shrink-0 p-2 cursor-pointer"
-            :class="{'lg:justify-center': !isSidebarOpen}">
-            <!-- <span
+        <!-- Sidebar -->
+        <aside x-cloak x-transition:enter="transition transform duration-300"
+            x-transition:enter-start="-translate-x-full opacity-30  ease-in"
+            x-transition:enter-end="translate-x-0 opacity-100 ease-out"
+            x-transition:leave="transition transform duration-300"
+            x-transition:leave-start="translate-x-0 opacity-100 ease-out"
+            x-transition:leave-end="-translate-x-full opacity-0 ease-in"
+            class="fixed inset-y-0 z-20 flex flex-col flex-shrink-0 w-64 max-h-screen overflow-hidden transition-all transform bg-white shadow-lg lg:z-auto lg:static lg:shadow-none"
+            :class="{'-translate-x-full lg:translate-x-0 lg:w-20': !isSidebarOpen}">
+            <aside x-cloak x-transition:enter="transition transform duration-300"
+                x-transition:enter-start="-translate-x-full opacity-30  ease-in"
+                x-transition:enter-end="translate-x-0 opacity-100 ease-out"
+                x-transition:leave="transition transform duration-300"
+                x-transition:leave-start="translate-x-0 opacity-100 ease-out"
+                x-transition:leave-end="-translate-x-full opacity-0 ease-in"
+                class="fixed inset-y-0 z-20 flex flex-col flex-shrink-0 w-64 max-h-screen overflow-hidden transition-all transform bg-white shadow-lg lg:z-auto lg:static lg:shadow-none"
+                :class="{'-translate-x-full lg:translate-x-0 lg:w-20': !isSidebarOpen}">
+                <!-- sidebar header -->
+                <div class="flex items-center justify-between flex-shrink-0 p-2 cursor-pointer"
+                    :class="{'lg:justify-center': !isSidebarOpen}">
+                    <!-- <span
                 class="w-full flex justify-center items-center space-x-2 p-2 text-xl font-semibold leading-8 tracking-wider uppercase whitespace-nowrap bg-gray-100 rounded shadow hover:drop-shadow-xl transition duration-150 ease-in-out">
                 <span :class="{'lg:hidden': !isSidebarOpen}">Category</span>
             </span> -->
-            <button @click="toggleSidbarMenu()" class="p-2 rounded-md lg:hidden">
-                <svg class="w-6 h-6 text-gray-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
-        </div>
-        <!-- Sidebar links -->
-        <nav class="flex-1 overflow-hidden hover:overflow-y-auto mt-9">
-            <ul class="p-2 overflow-hidden">
-
-                <!-- font icon -->
-                <li>
-                    <a href="./index.html" class="flex justify-center items-center p-2 space-x-2 rounded-md bg-gray-100 hover:text-[#ff440f] hover:drop-shadow transition"
-                        :class="{'justify-center': !isSidebarOpen}">
-                        <img class="w-8 h-6" src="./images/leftSidebar/font.png" alt="font image" loading="lazy">
-                        <span class="capitalize font-semibold" :class="{ 'lg:hidden': !isSidebarOpen }">Font</span>
-                    </a>
-                </li>
-
-                <!-- icon icon -->
-                <li class="mt-3">
-                    <a href="./icons.html" class="flex justify-center items-center p-2 space-x-2 rounded-md bg-gray-100 hover:text-[#ff440f] hover:drop-shadow transition"
-                        :class="{'justify-center': !isSidebarOpen}">
-                        <img class="w-6 h-6" src="./images/leftSidebar/icon.png" alt="icon image" loading="lazy">
-                        <span class="capitalize font-semibold" :class="{ 'lg:hidden': !isSidebarOpen }">icon</span>
-                    </a>
-                </li>
-
-                <!-- color icon -->
-                <li class="mt-3">
-                    <a href="./icons.html" class="flex justify-center items-center p-2 space-x-2 rounded-md bg-gray-100 hover:text-[#ff440f] hover:drop-shadow transition"
-                        :class="{'justify-center': !isSidebarOpen}">
-                        <img class="w-6 h-6" src="./images/leftSidebar/color.png" alt="color image" loading="lazy">
-                        <span class="capitalize font-semibold" :class="{ 'lg:hidden': !isSidebarOpen }">color</span>
-                    </a>
-                </li>
-
-                <!-- gradiants icon -->
-                <li class="mt-3">
-                    <a href="./icons.html" class="flex justify-center items-center p-2 space-x-2 rounded-md bg-gray-100 hover:text-[#ff440f] hover:drop-shadow transition"
-                        :class="{'justify-center': !isSidebarOpen}">
-                        <img class="w-6 h-6" src="./images/leftSidebar/gradiants.png" alt="gradiants image" loading="lazy">
-                        <span class="capitalize font-semibold" :class="{ 'lg:hidden': !isSidebarOpen }">gradiants</span>
-                    </a>
-                </li>
-
-                <!-- color information icon -->
-                <li class="mt-3">
-                    <a href="./icons.html" class="flex justify-center items-center p-2 space-x-2 rounded-md bg-gray-100 hover:text-[#ff440f] hover:drop-shadow transition"
-                        :class="{'justify-center': !isSidebarOpen}">
-                        <img class="w-6 h-6" src="./images/leftSidebar/color-info.png" alt="color information image" loading="lazy">
-                        <span class="capitalize font-semibold" :class="{ 'lg:hidden': !isSidebarOpen }">color information</span>
-                    </a>
-                </li>
-
-                <!-- color extraction icon -->
-                <li class="mt-3">
-                    <a href="./icons.html" class="flex justify-center items-center p-2 space-x-2 rounded-md bg-gray-100 hover:text-[#ff440f] hover:drop-shadow transition"
-                        :class="{'justify-center': !isSidebarOpen}">
-                        <img class="w-6 h-6" src="./images/leftSidebar/color-extraction.png" alt="color extraction image" loading="lazy">
-                        <span class="capitalize font-semibold" :class="{ 'lg:hidden': !isSidebarOpen }">color extraction</span>
-                    </a>
-                </li>
-
-                <!-- palattes finder icon -->
-                <li class="mt-3">
-                    <a href="./icons.html" class="flex justify-center items-center p-2 space-x-2 rounded-md bg-gray-100 hover:text-[#ff440f] hover:drop-shadow transition"
-                        :class="{'justify-center': !isSidebarOpen}">
-                        <img class="w-6 h-6" src="./images/leftSidebar/palattes-finder.png" alt="palattes finder image" loading="lazy">
-                        <span class="capitalize font-semibold" :class="{ 'lg:hidden': !isSidebarOpen }">palattes finder</span>
-                    </a>
-                </li>
-
-                <!-- copyright icon -->
-                <li class="mt-3">
-                    <a href="./icons.html" class="flex justify-center items-center p-2 space-x-2 rounded-md bg-gray-100 hover:text-[#ff440f] hover:drop-shadow transition"
-                        :class="{'justify-center': !isSidebarOpen}">
-                        <img class="w-6 h-6" src="./images/leftSidebar/copyright.png" alt="copyright image" loading="lazy">
-                        <span class="capitalize font-semibold" :class="{ 'lg:hidden': !isSidebarOpen }">copyright</span>
-                    </a>
-                </li>
-                <!-- Sidebar Links... -->
-            </ul>
-        </nav>
-    </aside>
-    </aside>
-
-    <!-- body Content -->
-    <div class="flex flex-col flex-1 h-full overflow-hidden bg-gray-100">
-        <!-- Navbar -->
-        <header class="bg-white flex-shrink-0 py-3">
-            <div class="flex items-center justify-between p-2">
-                <!-- Navbar left pc only -->
-                <div class="hidden md:flex items-center lg:space-x-3">
-                    <button @click="toggleSidbarMenu()" class="p-2 rounded-md focus:outline-none">
-                        <svg class="w-4 h-4 text-gray-600"
-                            :class="{'transform transition-transform -rotate-180': isSidebarOpen}"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <button @click="toggleSidbarMenu()" class="p-2 rounded-md lg:hidden">
+                        <svg class="w-6 h-6 text-gray-600" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+                                d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
-                    <img class="ml-3" src="" alt="image logo" loading="lazy">
                 </div>
+                <!-- Sidebar links -->
+                <nav class="flex-1 overflow-hidden hover:overflow-y-auto mt-0 md:mt-9">
+                    <ul class="p-2 overflow-hidden mt-0 md:mt-6">
 
-                <!-- Navbar left mobile only -->
-                <div class="block md:hidden flex items-center lg:space-x-3">
-                    <img @click="toggleSidbarMenu()" class="w-8 h-6 object-contain p-1" src="./images/home/menu.png" alt="menu image" loading="lazy">
-                </div>
+                        <!-- font icon -->
+                        <li>
+                            <a href="./index.html"
+                                class="flex justify-center items-center p-2 space-x-2 rounded-md bg-[#f4f7fc] hover:text-[#ff440f] hover:drop-shadow transition"
+                                :class="{'justify-center': !isSidebarOpen}">
+                                <img class="w-8 h-6" src="./images/leftSidebar/font.png" alt="font image"
+                                    loading="lazy">
+                                <span class="capitalize font-semibold"
+                                    :class="{ 'lg:hidden': !isSidebarOpen }">Font</span>
+                            </a>
+                        </li>
 
-                <!-- Mobile search box -->
-                <div x-show.transition="isSearchBoxOpen" class="fixed inset-0 z-10 bg-black bg-opacity-20"
-                    style="backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px)">
-                    <div @click.away="isSearchBoxOpen = false"
-                        class="absolute inset-x-0 flex items-center justify-between p-2 bg-white shadow-md">
-                        <div class="flex items-center flex-1 px-2 space-x-2">
-                            <!-- search icon -->
-                            <span>
-                                <svg class="w-6 h-6 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        <!-- icon icon -->
+                        <li class="mt-3">
+                            <a href="./icons.html"
+                                class="flex justify-center items-center p-2 space-x-2 rounded-md bg-[#f4f7fc] hover:text-[#ff440f] hover:drop-shadow transition"
+                                :class="{'justify-center': !isSidebarOpen}">
+                                <img class="w-6 h-6" src="./images/leftSidebar/icon.png" alt="icon image"
+                                    loading="lazy">
+                                <span class="capitalize font-semibold"
+                                    :class="{ 'lg:hidden': !isSidebarOpen }">icon</span>
+                            </a>
+                        </li>
+
+                        <!-- color icon -->
+                        <li class="mt-3">
+                            <a href="./icons.html"
+                                class="flex justify-center items-center p-2 space-x-2 rounded-md bg-[#f4f7fc] hover:text-[#ff440f] hover:drop-shadow transition"
+                                :class="{'justify-center': !isSidebarOpen}">
+                                <img class="w-6 h-6" src="./images/leftSidebar/color.png" alt="color image"
+                                    loading="lazy">
+                                <span class="capitalize font-semibold"
+                                    :class="{ 'lg:hidden': !isSidebarOpen }">color</span>
+                            </a>
+                        </li>
+
+                        <!-- gradiants icon -->
+                        <li class="mt-3">
+                            <a href="./icons.html"
+                                class="flex justify-center items-center p-2 space-x-2 rounded-md bg-[#f4f7fc] hover:text-[#ff440f] hover:drop-shadow transition"
+                                :class="{'justify-center': !isSidebarOpen}">
+                                <img class="w-6 h-6" src="./images/leftSidebar/gradiants.png" alt="gradiants image"
+                                    loading="lazy">
+                                <span class="capitalize font-semibold"
+                                    :class="{ 'lg:hidden': !isSidebarOpen }">gradiants</span>
+                            </a>
+                        </li>
+
+                        <!-- color information icon -->
+                        <li class="mt-3">
+                            <a href="./icons.html"
+                                class="flex justify-center items-center p-2 space-x-2 rounded-md bg-[#f4f7fc] hover:text-[#ff440f] hover:drop-shadow transition"
+                                :class="{'justify-center': !isSidebarOpen}">
+                                <img class="w-6 h-6" src="./images/leftSidebar/color-info.png"
+                                    alt="color information image" loading="lazy">
+                                <span class="capitalize font-semibold" :class="{ 'lg:hidden': !isSidebarOpen }">color
+                                    information</span>
+                            </a>
+                        </li>
+
+                        <!-- color extraction icon -->
+                        <li class="mt-3">
+                            <a href="./icons.html"
+                                class="flex justify-center items-center p-2 space-x-2 rounded-md bg-[#f4f7fc] hover:text-[#ff440f] hover:drop-shadow transition"
+                                :class="{'justify-center': !isSidebarOpen}">
+                                <img class="w-6 h-6" src="./images/leftSidebar/color-extraction.png"
+                                    alt="color extraction image" loading="lazy">
+                                <span class="capitalize font-semibold" :class="{ 'lg:hidden': !isSidebarOpen }">color
+                                    extraction</span>
+                            </a>
+                        </li>
+
+                        <!-- palattes finder icon -->
+                        <li class="mt-3">
+                            <a href="./icons.html"
+                                class="flex justify-center items-center p-2 space-x-2 rounded-md bg-[#f4f7fc] hover:text-[#ff440f] hover:drop-shadow transition"
+                                :class="{'justify-center': !isSidebarOpen}">
+                                <img class="w-6 h-6" src="./images/leftSidebar/palattes-finder.png"
+                                    alt="palattes finder image" loading="lazy">
+                                <span class="capitalize font-semibold" :class="{ 'lg:hidden': !isSidebarOpen }">palattes
+                                    finder</span>
+                            </a>
+                        </li>
+
+                        <!-- copyright icon -->
+                        <li class="mt-3">
+                            <a href="./icons.html"
+                                class="flex justify-center items-center p-2 space-x-2 rounded-md bg-[#f4f7fc] hover:text-[#ff440f] hover:drop-shadow transition"
+                                :class="{'justify-center': !isSidebarOpen}">
+                                <img class="w-6 h-6" src="./images/leftSidebar/copyright.png" alt="copyright image"
+                                    loading="lazy">
+                                <span class="capitalize font-semibold"
+                                    :class="{ 'lg:hidden': !isSidebarOpen }">copyright</span>
+                            </a>
+                        </li>
+                        <!-- Sidebar Links... -->
+                    </ul>
+                </nav>
+            </aside>
+        </aside>
+
+        <!-- body Content -->
+        <div class="flex flex-col flex-1 h-full overflow-hidden bg-gray-100">
+            <!-- Navbar -->
+            <header class="bg-white flex-shrink-0 py-3">
+                <div class="flex items-center justify-between p-2">
+                    <!-- Navbar left pc only -->
+                    <div class="hidden md:flex items-center lg:space-x-3">
+                        <button @click="toggleSidbarMenu()" class="p-2 rounded-md focus:outline-none">
+                            <svg class="w-4 h-4 text-gray-600"
+                                :class="{'transform transition-transform -rotate-180': isSidebarOpen}"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                        <img class="ml-3" src="" alt="image logo" loading="lazy">
+                    </div>
+
+                    <!-- Navbar left mobile only -->
+                    <div class="block md:hidden flex items-center lg:space-x-3">
+                        <img @click="toggleSidbarMenu()" class="w-8 h-6 object-contain p-1" src="./images/header/menu.png"
+                            alt="menu image" loading="lazy">
+                    </div>
+
+                    <!-- Mobile search box -->
+                    <div x-show.transition="isSearchBoxOpen" class="fixed inset-0 z-10 bg-black bg-opacity-20"
+                        style="backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px)">
+                        <div @click.away="isSearchBoxOpen = false"
+                            class="absolute inset-x-0 flex items-center justify-between p-2 bg-white shadow-md">
+                            <div class="flex items-center flex-1 px-2 space-x-2">
+                                <!-- search icon -->
+                                <span>
+                                    <svg class="w-6 h-6 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                    </svg>
+                                </span>
+                                <input type="text" placeholder="Search"
+                                    class="w-full px-4 py-3 text-gray-600 rounded-md focus:bg-gray-100 focus:outline-none" />
+                            </div>
+                            <!-- close button -->
+                            <button @click="isSearchBoxOpen = false" class="flex-shrink-0 p-4 rounded-md">
+                                <svg class="w-4 h-4 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- title pc only -->
+                    <!-- <h1 class="font-bold text-lg capitalize hidden lg:block"><span class="text-mainColor">welcome</span>, aswak el-3athem!
+                </h1> -->
+
+                    <!-- title mobile only -->
+                    <!-- <h1 class="font-bold text-xl capitalize md:hidden block">Main page</h1> -->
+
+                    <!-- Desktop search & buttons -->
+                    <div class="relative md:flex ml-7 hidden px-2 space-x-2 md:flex-1">
+                        <!-- search icon -->
+                        <div class="relative mr-4">
+                            <span class="absolute top-3 right-2 mr-3 cursor-pointer">
+                                <svg class="w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                 </svg>
                             </span>
-                            <input type="text" placeholder="Search"
-                                class="w-full px-4 py-3 text-gray-600 rounded-md focus:bg-gray-100 focus:outline-none" />
+                            <input type="text" placeholder="do you need help...?"
+                                class="w-[36rem] h-11 px-4 py-3 bg-[#] border border border-gray-300 rounded-full font-bold capitalize text-gray-500 text-xs md:py-2 md:flex-1 focus:outline-none focus:text-black" />
                         </div>
-                        <!-- close button -->
-                        <button @click="isSearchBoxOpen = false" class="flex-shrink-0 p-4 rounded-md">
-                            <svg class="w-4 h-4 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- title pc only -->
-                <!-- <h1 class="font-bold text-lg capitalize hidden lg:block"><span class="text-mainColor">welcome</span>, aswak el-3athem!
-                </h1> -->
-
-                <!-- title mobile only -->
-                <!-- <h1 class="font-bold text-xl capitalize md:hidden block">Main page</h1> -->
-
-                <!-- Desktop search & buttons -->
-                <div class="relative md:flex ml-7 hidden px-2 space-x-2 md:flex-1">
-                    <!-- search icon -->
-                    <div class="relative mr-4">
-                        <span class="absolute top-3 right-2 mr-3 cursor-pointer">
-                            <svg class="w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                            </svg>
-                        </span>
-                        <input type="text" placeholder="do you need help...?"
-                            class="w-[36rem] h-11 px-4 py-3 bg-[#] border border border-gray-300 rounded-full font-bold capitalize text-gray-500 text-xs md:py-2 md:flex-1 focus:outline-none focus:text-black" />
-                    </div>
-                    <div class="flex items-center space-x-3">
-                        <!-- buttons General -->
-                        <button class="flex items-center bg-[#d5d6db] rounded-full pl-4 pr-4 pt-2 pb-2">
-                            <img class="w-8 h-7" src="./images/header/heart.png" alt="save image" loading="lazy">
-                            <P class="capitalize ml-2 font-semibold text-gray-700">saved</P>
-                        </button>
-                        <button class="flex items-center bg-[#d5d6db] rounded-full pl-4 pr-4 pt-2 pb-2">
-                            <img class="w-8 h-7" src="./images/header/contact.png" alt="contact image" loading="lazy">
-                            <P class="capitalize ml-2 font-semibold text-gray-700">contact</P>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Navbar right pc only -->
-                <div class="hidden md:flex relative flex items-center space-x-3">
-
-                </div>
-                
-                <!-- Navbar right mobile only -->
-                <div class="block md:hidden relative flex items-center">
-                </div>
-            </div>
-        </header>
-
-        <!-- Main content -->
-        <main class="flex-1 max-h-full p-5 overflow-hidden overflow-y-scroll">
-
-            <!-- serach mobile only -->
-            <div class="relative md:hidden block mb-4">
-                <!-- search icon -->
-                <span class="absolute ltr:right-0 rtl:left-0 top-2.5 ltr:mr-2 rtl:ml-2 cursor-pointer">
-                    <svg class="w-5 h-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-upc-scan" viewBox="0 0 16 16">
-                        <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1h-3zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5zM.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5zM3 4.5a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7zm2 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7zm2 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7zm2 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-7zm3 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7z"/>
-                    </svg>
-                </span>
-                <input type="text" placeholder="searchfor product by name or parcode"
-                    class="w-full px-4 py-3  capitalize rounded-md text-gray-500 text-xs lg:max-w-sm md:py-2 md:flex-1 focus:outline-none  md:focus:shadow  shadow-lg" />
-            </div>
-
-
-            <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-5 space-x-7">
-                
-                <div class="col-span-3 shadow-lg">
-                    <div class="hidden md:flex items-center justify-between p-3 bg-white rounded-xl">
-                        <h1 class="capitalize font-semibold">Casher</h1>
-                        <input type="text" placeholder="Search of product using name orbarcode" class="md:w-72 md:h-10 p-2 capitalize text-xs p-1 bg-gray-200 text-gray-600 rounded-md focus:bg-gray-100 focus:outline-none">
-                        <select class="hidden md:block w-48 h-10 p-1 bg-gray-200 text-gray-600 rounded-md focus:bg-gray-100 focus:outline-none">
-                            <option value="" selected>a</option>
-                            <option value="">b</option>
-                            <option value="">c</option>
-                            <option value="">d</option>
-                            <option value="">e</option>
-                        </select>
-                    </div>
-
-                    <!-- select for catgeory mobile only -->
-                    <select class="block md:hidden w-full h-10 capitalize p-1 md:w-48 md:h-7 bg-gray-200 text-gray-600 rounded-md focus:bg-gray-100 focus:outline-none">
-                        <option value="" selected>product</option>
-                        <option value="">Mobile</option>
-                        <option value="">electronics</option>
-                    </select>
-
-
-                    <!-- products -->
-                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 p-1 md:p-3 overflow-y-auto md:h-[27rem]">
-                        <!-- single product -->
-                        <div class="relative mx-auto p-2 mt-2 text-center rounded-xl bg-white w-36 md:w-48 md:h-52 max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
-                            <!-- badge counter -->
-                            <p class="absolute ltr:left-0 rtl:right-0 top-0 bg-[#ff440f] text-white w-6 h-6 text-center ltr:rounded-r-xl ltr:rounded-t-md rtl:rounded-t-xl rtl:rounded-r-md">
-                                2
-                            </p>
-                            <!-- badge product empty  -->
-                            <div class="badge-overlay">
-                                <span class="top-right top-left badge bg-[#e83e3f] capitalize">executed</span>
-                            </div>
-                            <!-- image -->
-                            <img loading="lazy"class="mt-6 rounded w-full h-24 object-contain"
-                                src="https://media.btech.com/media/catalog/product/cache/8e279240a6612e9579d3be696bac1c07/a/p/apple-iphone-13-pro-128gb-5g-gold.jpg"
-                                alt="image product" loading="lazy">
-                            <!-- name -->
-                            <p class="font-semibold mt-2">Iphone X</p>
-                            <!-- price -->
-                            <p class="text-[#ff440f] font-semibold text-sm">23.345</p>
-                        </div>
-                        <!-- single product -->
-                        <div class="relative mx-auto p-2 mt-2 text-center rounded-xl bg-white w-36 md:w-48 md:h-52 max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
-                            <!-- badge counter -->
-                            <p class="absolute ltr:left-0 rtl:right-0 top-0 bg-[#ff440f] text-white w-6 h-6 text-center ltr:rounded-r-xl ltr:rounded-t-md rtl:rounded-t-xl rtl:rounded-r-md">
-                                2
-                            </p>
-                            <!-- badge product empty  -->
-                            <p class="hidden absolute p-1 text-xs w-20 md:w-20 ltr:left-16 rtl:right-16 md:ltr:left-20 md:rtl:right-20 top-6 bg-[#e83e3f] text-white rounded text-center">
-                                out of stock
-                            </p>
-                            <!-- image -->
-                            <img loading="lazy"class="mt-6 rounded w-full h-24 object-contain"
-                                src="https://media.btech.com/media/catalog/product/cache/8e279240a6612e9579d3be696bac1c07/a/p/apple-iphone-13-pro-128gb-5g-gold.jpg"
-                                alt="image product" loading="lazy">
-                            <!-- name -->
-                            <p class="font-semibold mt-2">Iphone X</p>
-                            <!-- price -->
-                            <p class="text-[#ff440f] font-semibold text-sm">23.345</p>
-                        </div>
-                        <!-- single product -->
-                        <div class="relative mx-auto p-2 mt-2 text-center rounded-xl bg-white w-36 md:w-48 md:h-52 max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
-                            <!-- badge counter -->
-                            <p class="absolute ltr:left-0 rtl:right-0 top-0 bg-[#ff440f] text-white w-6 h-6 text-center ltr:rounded-r-xl ltr:rounded-t-md rtl:rounded-t-xl rtl:rounded-r-md">
-                                2
-                            </p>
-                            <!-- badge product empty  -->
-                            <p class="hidden absolute p-1 text-xs w-20 md:w-20 ltr:left-16 rtl:right-16 md:ltr:left-20 md:rtl:right-20 top-6 bg-[#e83e3f] text-white rounded text-center">
-                                out of stock
-                            </p>
-                            <!-- image -->
-                            <img loading="lazy"class="mt-6 rounded w-full h-24 object-contain"
-                                src="https://media.btech.com/media/catalog/product/cache/8e279240a6612e9579d3be696bac1c07/a/p/apple-iphone-13-pro-128gb-5g-gold.jpg"
-                                alt="image product" loading="lazy">
-                            <!-- name -->
-                            <p class="font-semibold mt-2">Iphone X</p>
-                            <!-- price -->
-                            <p class="text-[#ff440f] font-semibold text-sm">23.345</p>
-                        </div>
-                        <!-- single product -->
-                        <div class="relative mx-auto p-2 mt-2 text-center rounded-xl bg-white w-36 md:w-48 md:h-52 max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
-                            <!-- badge counter -->
-                            <p class="absolute ltr:left-0 rtl:right-0 top-0 bg-[#ff440f] text-white w-6 h-6 text-center ltr:rounded-r-xl ltr:rounded-t-md rtl:rounded-t-xl rtl:rounded-r-md">
-                                2
-                            </p>
-                            <!-- badge product empty  -->
-                            <p class="hidden absolute p-1 text-xs w-20 md:w-20 ltr:left-16 rtl:right-16 md:ltr:left-20 md:rtl:right-20 top-6 bg-[#e83e3f] text-white rounded text-center">
-                                out of stock
-                            </p>
-                            <!-- image -->
-                            <img loading="lazy"class="mt-6 rounded w-full h-24 object-contain"
-                                src="https://media.btech.com/media/catalog/product/cache/8e279240a6612e9579d3be696bac1c07/a/p/apple-iphone-13-pro-128gb-5g-gold.jpg"
-                                alt="image product" loading="lazy">
-                            <!-- name -->
-                            <p class="font-semibold mt-2">Iphone X</p>
-                            <!-- price -->
-                            <p class="text-[#ff440f] font-semibold text-sm">23.345</p>
-                        </div>
-                        <!-- single product -->
-                        <div class="relative mx-auto p-2 mt-2 text-center rounded-xl bg-white w-36 md:w-48 md:h-52 max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
-                            <!-- badge counter -->
-                            <p class="absolute ltr:left-0 rtl:right-0 top-0 bg-[#ff440f] text-white w-6 h-6 text-center ltr:rounded-r-xl ltr:rounded-t-md rtl:rounded-t-xl rtl:rounded-r-md">
-                                2
-                            </p>
-                            <!-- badge product empty  -->
-                            <p class="hidden absolute p-1 text-xs w-20 md:w-20 ltr:left-16 rtl:right-16 md:ltr:left-20 md:rtl:right-20 top-6 bg-[#e83e3f] text-white rounded text-center">
-                                out of stock
-                            </p>
-                            <!-- image -->
-                            <img loading="lazy"class="mt-6 rounded w-full h-24 object-contain"
-                                src="https://media.btech.com/media/catalog/product/cache/8e279240a6612e9579d3be696bac1c07/a/p/apple-iphone-13-pro-128gb-5g-gold.jpg"
-                                alt="image product">
-                            <!-- name -->
-                            <p class="font-semibold mt-2">Iphone X</p>
-                            <!-- price -->
-                            <p class="text-[#ff440f] font-semibold text-sm">23.345</p>
-                        </div>
-                        <!-- single product -->
-                        <div class="relative mx-auto p-2 mt-2 text-center rounded-xl bg-white w-36 md:w-48 md:h-52 max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
-                            <!-- badge counter -->
-                            <p class="absolute ltr:left-0 rtl:right-0 top-0 bg-[#ff440f] text-white w-6 h-6 text-center ltr:rounded-r-xl ltr:rounded-t-md rtl:rounded-t-xl rtl:rounded-r-md">
-                                2
-                            </p>
-                            <!-- badge product empty  -->
-                            <p class="hidden absolute p-1 text-xs w-20 md:w-20 ltr:left-16 rtl:right-16 md:ltr:left-20 md:rtl:right-20 top-6 bg-[#e83e3f] text-white rounded text-center">
-                                out of stock
-                            </p>
-                            <!-- image -->
-                            <img loading="lazy"class="mt-6 rounded w-full h-24 object-contain"
-                                src="https://media.btech.com/media/catalog/product/cache/8e279240a6612e9579d3be696bac1c07/a/p/apple-iphone-13-pro-128gb-5g-gold.jpg"
-                                alt="image product">
-                            <!-- name -->
-                            <p class="font-semibold mt-2">Iphone X</p>
-                            <!-- price -->
-                            <p class="text-[#ff440f] font-semibold text-sm">23.345</p>
-                        </div>
-                        <!-- single product -->
-                        <div class="relative mx-auto p-2 mt-2 text-center rounded-xl bg-white w-36 md:w-48 md:h-52 max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
-                            <!-- badge counter -->
-                            <p class="absolute ltr:left-0 rtl:right-0 top-0 bg-[#ff440f] text-white w-6 h-6 text-center ltr:rounded-r-xl ltr:rounded-t-md rtl:rounded-t-xl rtl:rounded-r-md">
-                                2
-                            </p>
-                            <!-- badge product empty  -->
-                            <p class="hidden absolute p-1 text-xs w-20 md:w-20 ltr:left-16 rtl:right-16 md:ltr:left-20 md:rtl:right-20 top-6 bg-[#e83e3f] text-white rounded text-center">
-                                out of stock
-                            </p>
-                            <!-- image -->
-                            <img loading="lazy"class="mt-6 rounded w-full h-24 object-contain"
-                                src="https://media.btech.com/media/catalog/product/cache/8e279240a6612e9579d3be696bac1c07/a/p/apple-iphone-13-pro-128gb-5g-gold.jpg"
-                                alt="image product">
-                            <!-- name -->
-                            <p class="font-semibold mt-2">Iphone X</p>
-                            <!-- price -->
-                            <p class="text-[#ff440f] font-semibold text-sm">23.345</p>
-                        </div>
-                        <!-- single product -->
-                        <div class="relative mx-auto p-2 mt-2 text-center rounded-xl bg-white w-36 md:w-48 md:h-52 max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
-                            <!-- badge counter -->
-                            <p class="absolute ltr:left-0 rtl:right-0 top-0 bg-[#ff440f] text-white w-6 h-6 text-center ltr:rounded-r-xl ltr:rounded-t-md rtl:rounded-t-xl rtl:rounded-r-md">
-                                2
-                            </p>
-                            <!-- badge product empty  -->
-                            <p class="hidden absolute p-1 text-xs w-20 md:w-20 ltr:left-16 rtl:right-16 md:ltr:left-20 md:rtl:right-20 top-6 bg-[#e83e3f] text-white rounded text-center">
-                                out of stock
-                            </p>
-                            <!-- image -->
-                            <img loading="lazy"class="mt-6 rounded w-full h-24 object-contain"
-                                src="https://media.btech.com/media/catalog/product/cache/8e279240a6612e9579d3be696bac1c07/a/p/apple-iphone-13-pro-128gb-5g-gold.jpg"
-                                alt="image product">
-                            <!-- name -->
-                            <p class="font-semibold mt-2">Iphone X</p>
-                            <!-- price -->
-                            <p class="text-[#ff440f] font-semibold text-sm">23.345</p>
-                        </div>
-                        <!-- single product -->
-                        <div class="relative mx-auto p-2 mt-2 text-center rounded-xl bg-white w-36 md:w-48 md:h-52 max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
-                            <!-- badge counter -->
-                            <p class="absolute ltr:left-0 rtl:right-0 top-0 bg-[#ff440f] text-white w-6 h-6 text-center ltr:rounded-r-xl ltr:rounded-t-md rtl:rounded-t-xl rtl:rounded-r-md">
-                                2
-                            </p>
-                            <!-- badge product empty  -->
-                            <p class="hidden absolute p-1 text-xs w-20 md:w-20 ltr:left-16 rtl:right-16 md:ltr:left-20 md:rtl:right-20 top-6 bg-[#e83e3f] text-white rounded text-center">
-                                out of stock
-                            </p>
-                            <!-- image -->
-                            <img loading="lazy"class="mt-6 rounded w-full h-24 object-contain"
-                                src="https://media.btech.com/media/catalog/product/cache/8e279240a6612e9579d3be696bac1c07/a/p/apple-iphone-13-pro-128gb-5g-gold.jpg"
-                                alt="image product">
-                            <!-- name -->
-                            <p class="font-semibold mt-2">Iphone X</p>
-                            <!-- price -->
-                            <p class="text-[#ff440f] font-semibold text-sm">23.345</p>
-                        </div>
-                        <!-- single product -->
-                        <div class="relative mx-auto p-2 mt-2 text-center rounded-xl bg-white w-36 md:w-48 md:h-52 max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
-                            <!-- badge counter -->
-                            <p class="absolute ltr:left-0 rtl:right-0 top-0 bg-[#ff440f] text-white w-6 h-6 text-center ltr:rounded-r-xl ltr:rounded-t-md rtl:rounded-t-xl rtl:rounded-r-md">
-                                2
-                            </p>
-                            <!-- badge product empty  -->
-                            <p class="hidden absolute p-1 text-xs w-20 md:w-20 ltr:left-16 rtl:right-16 md:ltr:left-20 md:rtl:right-20 top-6 bg-[#e83e3f] text-white rounded text-center">
-                                out of stock
-                            </p>
-                            <!-- image -->
-                            <img loading="lazy"class="mt-6 rounded w-full h-24 object-contain"
-                                src="https://media.btech.com/media/catalog/product/cache/8e279240a6612e9579d3be696bac1c07/a/p/apple-iphone-13-pro-128gb-5g-gold.jpg"
-                                alt="image product">
-                            <!-- name -->
-                            <p class="font-semibold mt-2">Iphone X</p>
-                            <!-- price -->
-                            <p class="text-[#ff440f] font-semibold text-sm">23.345</p>
-                        </div>
-                        <!-- single product -->
-                        <div class="relative mx-auto p-2 mt-2 text-center rounded-xl bg-white w-36 md:w-48 md:h-52 max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
-                            <!-- badge counter -->
-                            <p class="absolute ltr:left-0 rtl:right-0 top-0 bg-[#ff440f] text-white w-6 h-6 text-center ltr:rounded-r-xl ltr:rounded-t-md rtl:rounded-t-xl rtl:rounded-r-md">
-                                2
-                            </p>
-                            <!-- badge product empty  -->
-                            <p class="hidden absolute p-1 text-xs w-20 md:w-20 ltr:left-16 rtl:right-16 md:ltr:left-20 md:rtl:right-20 top-6 bg-[#e83e3f] text-white rounded text-center">
-                                out of stock
-                            </p>
-                            <!-- image -->
-                            <img loading="lazy"class="mt-6 rounded w-full h-24 object-contain"
-                                src="https://media.btech.com/media/catalog/product/cache/8e279240a6612e9579d3be696bac1c07/a/p/apple-iphone-13-pro-128gb-5g-gold.jpg"
-                                alt="image product">
-                            <!-- name -->
-                            <p class="font-semibold mt-2">Iphone X</p>
-                            <!-- price -->
-                            <p class="text-[#ff440f] font-semibold text-sm">23.345</p>
-                        </div>
-                        <!-- single product -->
-                        <div class="relative mx-auto p-2 mt-2 text-center rounded-xl bg-white w-36 md:w-48 md:h-52 max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
-                            <!-- badge counter -->
-                            <p class="absolute ltr:left-0 rtl:right-0 top-0 bg-[#ff440f] text-white w-6 h-6 text-center ltr:rounded-r-xl ltr:rounded-t-md rtl:rounded-t-xl rtl:rounded-r-md">
-                                2
-                            </p>
-                            <!-- badge product empty  -->
-                            <p class="hidden absolute p-1 text-xs w-20 md:w-20 ltr:left-16 rtl:right-16 md:ltr:left-20 md:rtl:right-20 top-6 bg-[#e83e3f] text-white rounded text-center">
-                                out of stock
-                            </p>
-                            <!-- image -->
-                            <img loading="lazy"class="mt-6 rounded w-full h-24 object-contain"
-                                src="https://media.btech.com/media/catalog/product/cache/8e279240a6612e9579d3be696bac1c07/a/p/apple-iphone-13-pro-128gb-5g-gold.jpg"
-                                alt="image product">
-                            <!-- name -->
-                            <p class="font-semibold mt-2">Iphone X</p>
-                            <!-- price -->
-                            <p class="text-[#ff440f] font-semibold text-sm">23.345</p>
-                        </div>                      
-                    </div>
-
-                </div>
-
-
-                <div class="col-span-2 hidden md:block shadow-sm p-3 mt-5 md:mt-0 bg-white rounded-xl">
-                    <!-- order number -->
-                    <div class="flex items-center space-x-4 justify-between">
-                        <!-- add product parcode -->
-                        <input type="number" placeholder="add product parcode" class="capitalize p-1 text-xs w-full md:w-36 h-10 bg-gray-200 text-gray-600 rounded-md focus:bg-gray-100 focus:outline-none">
-                        <button class="p-1 w-32 h-10 text-sm capitalize bg-[#ff440f] text-white rounded">print bill</button>
-                        <!-- start alert modal delete -->
-                        <a x-data="{ open: false }">
-                            <button x-on:click="open = true" class="bg-[#ff440f] p-1 w-32 h-10 rounded text-sm text-white capitalize">
-                                delete bill
-                                <i class="fa fa-trash-alt text-white ltr:ml-3 rtl:mr-3"></i>
+                        <div class="flex items-center space-x-3">
+                            <!-- buttons General -->
+                            <button class="flex items-center bg-[#d5d6db] rounded-full pl-4 pr-4 pt-2 pb-2">
+                                <img class="w-8 h-7" src="./images/header/heart.png" alt="save image" loading="lazy">
+                                <P class="capitalize ml-2 font-semibold text-gray-700">saved</P>
                             </button>
-                            <!-- Modal product -->
-                            <div x-show="open" x-on:keydown.escape.prevent.stop="open = false" role="dialog"
-                            aria-modal="true" x-id="['modal-title']" :aria-labelledby="$id('modal-title')"
-                            class="fixed inset-0 overflow-y-auto">
-                            <!-- Overlay -->
-                            <div x-show="open" x-transition.opacity class="fixed inset-0 bg-black bg-opacity-50"></div>
+                            <button class="flex items-center bg-[#d5d6db] rounded-full pl-4 pr-4 pt-2 pb-2">
+                                <img class="w-8 h-7" src="./images/header/contact.png" alt="contact image"
+                                    loading="lazy">
+                                <P class="capitalize ml-2 font-semibold text-gray-700">contact</P>
+                            </button>
+                        </div>
+                    </div>
 
-                            <!-- Panel -->
-                            <div x-show="open" x-transition x-on:click="open = false"
-                                class="relative min-h-screen flex items-center justify-center p-2 md:p-4">
-                                <div x-on:click.stop x-trap.noscroll.inert="open"
-                                    class="relative max-w-md w-full bg-white p-4 overflow-y-auto rounded-xl">
-                                    <!-- Title -->
-                                    <div class="flex items-center justify-center">
-                                        <h2 class="text-xl font-medium capitalize border-b-2 border-mainColor w-40" :id="$id('modal-title')">are <span class="font-bold text-[#ff440f]">you sure ?</span></h2>
-                                        <svg x-on:click="open = false" xmlns="http://www.w3.org/2000/svg" width="25"
-                                            height="25" fill="white"
-                                            class="bi bi-x ltr:ml-auto rtl:mr-auto cursor-pointer bg-mainColor w-6 rounded-full" viewBox="0 0 16 16">
-                                            <path
-                                                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-                                        </svg>
-                                    </div>
-                                    <!-- Content -->
-                                    <div class="form">
-                                        <h1 class="capitalize text-sm mt-5">
-                                            You are about to delete an existing bill and start a new bill. This event cannot be reversed
-                                        </h1>
-            
-                                        <!-- button add -->
-                                        <div class="flex justify-center items-center mt-7 space-x-4">
-                                            <button class="flex items-center justify-center w-40 h-10 bg-[#ff440f] rounded-xl p-1 transition shadow-lg hover:drop-shadow-xl hover:animate-bounce">
-                                                <h1 class="text-white font-medium capitalize text-sm">No, back to bill</h1>
-                                            </button>
-                                            <button class="flex items-center justify-center w-40 h-10 bg-gray-200 rounded-xl p-1 transition shadow-lg hover:drop-shadow-xl hover:animate-bounce">
-                                                <h1 class="text-black font-semibold capitalize text-sm">yes, start new bill</h1>
-                                            </button>
-                                        </div>
-                                    </div>
+                    <!-- Navbar right pc only -->
+                    <div class="hidden md:flex relative flex items-center space-x-3">
 
+                    </div>
+
+                    <!-- Navbar right mobile only -->
+                    <div class="block md:hidden relative flex items-center">
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main content -->
+            <main class="flex-1 max-h-full p-5 overflow-hidden overflow-y-scroll">
+
+                <!-- grid content -->
+                <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-5 space-x-7">
+
+                    <div class="col-span-4 shadow-lg">
+                        <!-- catgeory -->
+                        <div class=" p-3 bg-white rounded">
+                            <h1 class="capitalize font-bold text-gray-600 text-xl">category</h1>
+                            <div class="flex items-center space-x-4 mt-2">
+                                <button class="capitalize text-gray-500 font-semibold bg-gray-300 rounded p-1">interaface</button>
+                                <button class="capitalize text-gray-500 font-semibold">social media</button>
+                                <button class="capitalize text-gray-500 font-semibold">animals</button>
+                                <button class="capitalize text-gray-500 font-semibold">music</button>
+                                <button class="capitalize text-gray-500 font-semibold">nature</button>
+                                <button class="capitalize text-gray-500 font-semibold">sea</button>
+                                <button class="capitalize text-gray-500 font-semibold">medical</button>
+                                <button class="capitalize text-gray-500 font-semibold">shapes</button>
+                                <button class="capitalize text-gray-500 font-semibold">weather</button>
+                            </div>
+                        </div>
+
+                        <!-- sub categroy -->
+                        <div class=" p-3 bg-white rounded mt-3">
+                            <div class="flex items-center justify-between mt-2">
+                                <!-- select options -->
+                                <div class="space-x-3">
+                                    <button class="capitalize text-gray-700 font-semibold bg-gray-300 rounded p-1">monocolor</button>
+                                    <button class="capitalize text-gray-700 font-semibold bg-gray-300 rounded p-1">multicolor</button>
+                                    <button class="capitalize text-gray-700 font-semibold bg-gray-300 rounded p-1">outlined</button>
+                                    <button class="capitalize text-gray-700 font-semibold bg-gray-300 rounded p-1">filled</button>
+                                </div>
+                                <!-- dropdown brand -->
+                                <div class="brand">
+                                    <!-- start dropdown modal brand  -->
+                                    <div x-data="{
+                                        open: false,
+                                        toggle() {
+                                            if (this.open) {
+                                                return this.close()
+                                            }
+                                    
+                                            this.open = true
+                                        },
+                                        close(focusAfter) {
+                                            this.open = false
+                                            focusAfter && focusAfter.focus()
+                                        }
+                                    }" x-on:keydown.escape.prevent.stop="close($refs.button)"
+                                                    x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
+                                                    x-id="['dropdown-button']" class="relative ml-5">
+                                                    <!-- Button -->
+                                                    <button x-ref="button" x-on:click="toggle()" :aria-expanded="open"
+                                                        :aria-controls="$id('dropdown-button')" type="button" class="flex items-center justify-between border-0 capitalize text-gray-700 font-semibold bg-gray-300 rounded pl-3 pr-5 pt-2 pb-2">
+                                                        <p>popular</p>
+                                                        <img class="w-4 h-4 ml-5" src="./images/iconImage/down-arrow-svgrepo-com.svg" alt="down arrow" loading="lazy">
+                                                    </button>
+                        
+                                                    <!-- Panel -->
+                                                    <div x-ref="panel" x-show="open" x-transition.origin.top.left
+                                                        x-on:click.outside="close($refs.button)" :id="$id('dropdown-button')"
+                                                        style="display: none;" class="absolute w-full mt-2 z-20 bg-white rounded">
+                                                        <div class="whitespace-nowrap">
+                                                            <a href="#"
+                                                                class="flex items-center w-full px-4 py-2 text-left text-sm hover:bg-gray-100">
+                                                                <p class="ml-2 capitalize text-semibold text-gray-600">popular</p>
+                                                            </a>
+                        
+                                                            <a href="#"
+                                                                class="flex items-center w-full px-4 py-2 text-left text-sm hover:bg-gray-100">
+                                                                <p class="ml-2 capitalize text-semibold text-gray-600">trending</p>
+                                                            </a>
+                        
+                                                            <a href="#"
+                                                                class="flex items-center w-full px-4 py-2 text-left text-sm hover:bg-gray-100">
+                                                                <p class="ml-2 capitalize text-semibold text-gray-600">featured</p>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        </a>
-                    </div>
 
-                    <!-- data order -->
-                    <div class="block md:flex justify-between items-center mt-5 space-y-3 md:space-y-0">
-                        <select class="capitalize text-sm w-full md:w-36 h-10 bg-gray-200 text-gray-600 rounded-md focus:bg-gray-100 focus:outline-none">
-                            <option value=""  selected>a</option>
-                            <option value="">b</option>
-                            <option value="">c</option>
-                        </select>
 
-                        <!-- start button modal add new client -->
-                        <a x-data="{ open: false }">
-                            <button x-on:click="open = true" class="flex items-center justify-center w-12 h-10 space-x-3 bg-[#ff440f] rounded p-1 group-hover:w-36 group-hover:transition duration-150 ease-out">
-                                <img loading="lazy"src="./images/home/add_account.png" alt="sale image">
-                                <h1 class="hidden group-hover:block mt-1 text-white font-medium">add client</h1>
-                            </button>
-                            <!-- Modal product -->
-                            <div x-show="open" x-on:keydown.escape.prevent.stop="open = false" role="dialog"
-                            aria-modal="true" x-id="['modal-title']" :aria-labelledby="$id('modal-title')"
-                            class="fixed inset-0 overflow-y-auto">
-                            <!-- Overlay -->
-                            <div x-show="open" x-transition.opacity class="fixed inset-0 bg-black bg-opacity-50"></div>
-
-                            <!-- Panel -->
-                            <div x-show="open" x-transition x-on:click="open = false"
-                                class="relative min-h-screen flex items-center justify-center p-2 md:p-4">
-                                <div x-on:click.stop x-trap.noscroll.inert="open"
-                                    class="relative max-w-md w-full bg-white p-4 overflow-y-auto rounded-xl">
-                                    <!-- Title -->
-                                    <div class="flex items-center justify-center">
-                                        <h2 class="text-2xl font-medium capitalize border-b-2 border-mainColor w-48" :id="$id('modal-title')">add <span class="font-bold text-[#ff440f]">new client</span></h2>
-                                        <svg x-on:click="open = false" xmlns="http://www.w3.org/2000/svg" width="25"
-                                            height="25" fill="white"
-                                            class="bi bi-x ltr:ml-auto rtl:mr-auto cursor-pointer bg-mainColor w-6 rounded-full" viewBox="0 0 16 16">
-                                            <path
-                                                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-                                        </svg>
+                        <!-- Icons -->
+                        <div
+                            class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 p-1 md:p-3 overflow-y-auto md:h-[27rem]">
+                            <!-- single Icon -->
+                            <div
+                                class="relative mx-auto p-3 mt-2 text-center rounded-xl bg-[#f4f7fc] max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
+                                <!-- image -->
+                                <img loading="lazy" class="mt-6 rounded w-full h-24 object-contain"
+                                    src="./images/iconImage/iconImage.svg" alt="icon Image" loading="lazy">
+                                    <!-- icons -->
+                                    <div class="flex items-center justify-center ms:justify-start space-x-4 mt-3">
+                                        <a title="Save" class="bg-white rounded w-10 h-8"><i class="far fa-heart text-[#a7aab9] text-xl"></i></a >
+                                        <a title="view" class="bg-white rounded w-10 h-8"><i class="far fa-eye text-[#a7aab9] text-xl"></i></a >
+                                        <a title="download" class="bg-white rounded w-10 h-8"><i class="fas fa-download text-[#a7aab9] text-xl"></i></a >
                                     </div>
-                                    <!-- Content -->
-                                    <div class="form">
-                                        <!-- client name -->
-                                        <div class="md:flex justify-between items-center mt-10">
-                                            <h1 class="capitalize font-semibold text-sm">client name</h1>
-                                            <input type="text" placeholder="client name" class="mt-2 md:mt-0 w-full md:w-72 h-10 capitalize text-sm p-1 bg-gray-200 text-gray-600 rounded-md focus:bg-gray-100 focus:outline-none">
-                                        </div>
-            
-                                        <!-- mobile number -->
-                                        <div class="md:flex justify-between items-center mt-2">
-                                            <h1 class="capitalize font-semibold text-sm">mobile number</h1>
-                                            <input type="number" placeholder="mobile number" class="mt-2 md:mt-0 w-full md:w-72 h-10 capitalize text-sm p-1 bg-gray-200 text-gray-600 rounded-md focus:bg-gray-100 focus:outline-none">
-                                        </div>
-            
-                                        <!-- email -->
-                                        <div class="md:flex justify-between items-center mt-2">
-                                            <h1 class="capitalize font-semibold text-sm">email</h1>
-                                            <input type="text" placeholder="email" class="mt-2 md:mt-0 w-full md:w-72 h-10 capitalize text-sm p-1 bg-gray-200 text-gray-600 rounded-md focus:bg-gray-100 focus:outline-none">
-                                        </div>
-            
-                                        <!-- address -->
-                                        <div class="md:flex justify-between items-center mt-2">
-                                            <h1 class="capitalize font-semibold text-sm">address</h1>
-                                            <input type="text" placeholder="address" class="mt-2 md:mt-0 w-full md:w-72 h-10 capitalize text-sm p-1 bg-gray-200 text-gray-600 rounded-md focus:bg-gray-100 focus:outline-none">
-                                        </div>
-            
-                                        <!-- notes -->
-                                        <div class="md:flex justify-between items-center mt-2">
-                                            <h1 class="capitalize font-semibold text-sm">notes</h1>
-                                            <textarea cols="10" rows="5" class="mt-2 md:mt-0 w-full md:w-72 capitalize text-sm p-1 bg-gray-200 text-gray-600 rounded-md focus:bg-gray-100 focus:outline-none"></textarea>
-                                        </div>
-            
-                                        <!-- button add -->
-                                        <div class="flex justify-center items-center mt-7">
-                                            <button class="flex items-center justify-center space-x-3 w-40 h-10 bg-[#ff440f] rounded-xl p-1 transition">
-                                                <img loading="lazy"src="./images/home/add_account.png" alt="add account image">
-                                                <h1 class="mt-1 text-white font-medium">add client</h1>
-                                            </button>
-                                        </div>
+                            </div>
+                            <!-- single Icon -->
+                            <div
+                                class="relative mx-auto p-3 mt-2 text-center rounded-xl bg-[#f4f7fc] max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
+                                <!-- image -->
+                                <img loading="lazy" class="mt-6 rounded w-full h-24 object-contain"
+                                    src="./images/iconImage/iconImage.svg" alt="icon Image" loading="lazy">
+                                    <!-- icons -->
+                                    <div class="flex items-center justify-center ms:justify-start space-x-4 mt-3">
+                                        <a title="Save" class="bg-white rounded w-10 h-8"><i class="far fa-heart text-[#a7aab9] text-xl"></i></a >
+                                        <a title="view" class="bg-white rounded w-10 h-8"><i class="far fa-eye text-[#a7aab9] text-xl"></i></a >
+                                        <a title="download" class="bg-white rounded w-10 h-8"><i class="fas fa-download text-[#a7aab9] text-xl"></i></a >
                                     </div>
-
-                                </div>
+                            </div>
+                            <!-- single Icon -->
+                            <div
+                                class="relative mx-auto p-3 mt-2 text-center rounded-xl bg-[#f4f7fc] max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
+                                <!-- image -->
+                                <img loading="lazy" class="mt-6 rounded w-full h-24 object-contain"
+                                    src="./images/iconImage/iconImage.svg" alt="icon Image" loading="lazy">
+                                    <!-- icons -->
+                                    <div class="flex items-center justify-center ms:justify-start space-x-4 mt-3">
+                                        <a title="Save" class="bg-white rounded w-10 h-8"><i class="far fa-heart text-[#a7aab9] text-xl"></i></a >
+                                        <a title="view" class="bg-white rounded w-10 h-8"><i class="far fa-eye text-[#a7aab9] text-xl"></i></a >
+                                        <a title="download" class="bg-white rounded w-10 h-8"><i class="fas fa-download text-[#a7aab9] text-xl"></i></a >
+                                    </div>
+                            </div>
+                            <!-- single Icon -->
+                            <div
+                                class="relative mx-auto p-3 mt-2 text-center rounded-xl bg-[#f4f7fc] max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
+                                <!-- image -->
+                                <img loading="lazy" class="mt-6 rounded w-full h-24 object-contain"
+                                    src="./images/iconImage/iconImage.svg" alt="icon Image" loading="lazy">
+                                    <!-- icons -->
+                                    <div class="flex items-center justify-center ms:justify-start space-x-4 mt-3">
+                                        <a title="Save" class="bg-white rounded w-10 h-8"><i class="far fa-heart text-[#a7aab9] text-xl"></i></a >
+                                        <a title="view" class="bg-white rounded w-10 h-8"><i class="far fa-eye text-[#a7aab9] text-xl"></i></a >
+                                        <a title="download" class="bg-white rounded w-10 h-8"><i class="fas fa-download text-[#a7aab9] text-xl"></i></a >
+                                    </div>
+                            </div>
+                            <!-- single Icon -->
+                            <div
+                                class="relative mx-auto p-3 mt-2 text-center rounded-xl bg-[#f4f7fc] max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
+                                <!-- image -->
+                                <img loading="lazy" class="mt-6 rounded w-full h-24 object-contain"
+                                    src="./images/iconImage/iconImage.svg" alt="icon Image" loading="lazy">
+                                    <!-- icons -->
+                                    <div class="flex items-center justify-center ms:justify-start space-x-4 mt-3">
+                                        <a title="Save" class="bg-white rounded w-10 h-8"><i class="far fa-heart text-[#a7aab9] text-xl"></i></a >
+                                        <a title="view" class="bg-white rounded w-10 h-8"><i class="far fa-eye text-[#a7aab9] text-xl"></i></a >
+                                        <a title="download" class="bg-white rounded w-10 h-8"><i class="fas fa-download text-[#a7aab9] text-xl"></i></a >
+                                    </div>
+                            </div>
+                            <!-- single Icon -->
+                            <div
+                                class="relative mx-auto p-3 mt-2 text-center rounded-xl bg-[#f4f7fc] max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
+                                <!-- image -->
+                                <img loading="lazy" class="mt-6 rounded w-full h-24 object-contain"
+                                    src="./images/iconImage/iconImage.svg" alt="icon Image" loading="lazy">
+                                    <!-- icons -->
+                                    <div class="flex items-center justify-center ms:justify-start space-x-4 mt-3">
+                                        <a title="Save" class="bg-white rounded w-10 h-8"><i class="far fa-heart text-[#a7aab9] text-xl"></i></a >
+                                        <a title="view" class="bg-white rounded w-10 h-8"><i class="far fa-eye text-[#a7aab9] text-xl"></i></a >
+                                        <a title="download" class="bg-white rounded w-10 h-8"><i class="fas fa-download text-[#a7aab9] text-xl"></i></a >
+                                    </div>
+                            </div>
+                            <!-- single Icon -->
+                            <div
+                                class="relative mx-auto p-3 mt-2 text-center rounded-xl bg-[#f4f7fc] max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
+                                <!-- image -->
+                                <img loading="lazy" class="mt-6 rounded w-full h-24 object-contain"
+                                    src="./images/iconImage/iconImage.svg" alt="icon Image" loading="lazy">
+                                    <!-- icons -->
+                                    <div class="flex items-center justify-center ms:justify-start space-x-4 mt-3">
+                                        <a title="Save" class="bg-white rounded w-10 h-8"><i class="far fa-heart text-[#a7aab9] text-xl"></i></a >
+                                        <a title="view" class="bg-white rounded w-10 h-8"><i class="far fa-eye text-[#a7aab9] text-xl"></i></a >
+                                        <a title="download" class="bg-white rounded w-10 h-8"><i class="fas fa-download text-[#a7aab9] text-xl"></i></a >
+                                    </div>
+                            </div>
+                            <!-- single Icon -->
+                            <div
+                                class="relative mx-auto p-3 mt-2 text-center rounded-xl bg-[#f4f7fc] max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
+                                <!-- image -->
+                                <img loading="lazy" class="mt-6 rounded w-full h-24 object-contain"
+                                    src="./images/iconImage/iconImage.svg" alt="icon Image" loading="lazy">
+                                    <!-- icons -->
+                                    <div class="flex items-center justify-center ms:justify-start space-x-4 mt-3">
+                                        <a title="Save" class="bg-white rounded w-10 h-8"><i class="far fa-heart text-[#a7aab9] text-xl"></i></a >
+                                        <a title="view" class="bg-white rounded w-10 h-8"><i class="far fa-eye text-[#a7aab9] text-xl"></i></a >
+                                        <a title="download" class="bg-white rounded w-10 h-8"><i class="fas fa-download text-[#a7aab9] text-xl"></i></a >
+                                    </div>
+                            </div>
+                            <!-- single Icon -->
+                            <div
+                                class="relative mx-auto p-3 mt-2 text-center rounded-xl bg-[#f4f7fc] max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
+                                <!-- image -->
+                                <img loading="lazy" class="mt-6 rounded w-full h-24 object-contain"
+                                    src="./images/iconImage/iconImage.svg" alt="icon Image" loading="lazy">
+                                    <!-- icons -->
+                                    <div class="flex items-center justify-center ms:justify-start space-x-4 mt-3">
+                                        <a title="Save" class="bg-white rounded w-10 h-8"><i class="far fa-heart text-[#a7aab9] text-xl"></i></a >
+                                        <a title="view" class="bg-white rounded w-10 h-8"><i class="far fa-eye text-[#a7aab9] text-xl"></i></a >
+                                        <a title="download" class="bg-white rounded w-10 h-8"><i class="fas fa-download text-[#a7aab9] text-xl"></i></a >
+                                    </div>
+                            </div>
+                            <!-- single Icon -->
+                            <div
+                                class="relative mx-auto p-3 mt-2 text-center rounded-xl bg-[#f4f7fc] max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
+                                <!-- image -->
+                                <img loading="lazy" class="mt-6 rounded w-full h-24 object-contain"
+                                    src="./images/iconImage/iconImage.svg" alt="icon Image" loading="lazy">
+                                    <!-- icons -->
+                                    <div class="flex items-center justify-center ms:justify-start space-x-4 mt-3">
+                                        <a title="Save" class="bg-white rounded w-10 h-8"><i class="far fa-heart text-[#a7aab9] text-xl"></i></a >
+                                        <a title="view" class="bg-white rounded w-10 h-8"><i class="far fa-eye text-[#a7aab9] text-xl"></i></a >
+                                        <a title="download" class="bg-white rounded w-10 h-8"><i class="fas fa-download text-[#a7aab9] text-xl"></i></a >
+                                    </div>
+                            </div>
+                            <!-- single Icon -->
+                            <div
+                                class="relative mx-auto p-3 mt-2 text-center rounded-xl bg-[#f4f7fc] max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
+                                <!-- image -->
+                                <img loading="lazy" class="mt-6 rounded w-full h-24 object-contain"
+                                    src="./images/iconImage/iconImage.svg" alt="icon Image" loading="lazy">
+                                    <!-- icons -->
+                                    <div class="flex items-center justify-center ms:justify-start space-x-4 mt-3">
+                                        <a title="Save" class="bg-white rounded w-10 h-8"><i class="far fa-heart text-[#a7aab9] text-xl"></i></a >
+                                        <a title="view" class="bg-white rounded w-10 h-8"><i class="far fa-eye text-[#a7aab9] text-xl"></i></a >
+                                        <a title="download" class="bg-white rounded w-10 h-8"><i class="fas fa-download text-[#a7aab9] text-xl"></i></a >
+                                    </div>
+                            </div>
+                            <!-- single Icon -->
+                            <div
+                                class="relative mx-auto p-3 mt-2 text-center rounded-xl bg-[#f4f7fc] max-w-full shadow-lg hover:shadow-xl cursor-pointer transition duration-150 ease-out">
+                                <!-- image -->
+                                <img loading="lazy" class="mt-6 rounded w-full h-24 object-contain"
+                                    src="./images/iconImage/iconImage.svg" alt="icon Image" loading="lazy">
+                                    <!-- icons -->
+                                    <div class="flex items-center justify-center ms:justify-start space-x-4 mt-3">
+                                        <a title="Save" class="bg-white rounded w-10 h-8"><i class="far fa-heart text-[#a7aab9] text-xl"></i></a >
+                                        <a title="view" class="bg-white rounded w-10 h-8"><i class="far fa-eye text-[#a7aab9] text-xl"></i></a >
+                                        <a title="download" class="bg-white rounded w-10 h-8"><i class="fas fa-download text-[#a7aab9] text-xl"></i></a >
+                                    </div>
                             </div>
                         </div>
-                        </a>
-
-                        <select class="capitalize text-sm w-full md:w-36 h-10 bg-gray-200 text-gray-600 rounded-md focus:bg-gray-100 focus:outline-none">
-                            <option value=""  selected>type of bill</option>
-                            <option value="">b</option>
-                            <option value="">c</option>
-                        </select>
-                    </div>
-                    
-                    <!-- line -->
-                    <h1 class="border-b mt-3"></h1>
-
-                    <!-- data2 order -->
-                    <div class="overflow-y-scroll md:h-36 px-3">
-                        <div class="flex justify-between items-center mt-3">
-                            <h1 class="font-semibold">iphone 13</h1>
-                            <input placeholder="1" type="number" min="1" max="20" class="w-10 text-center h-8 text-xs p-1 border border-gray-400 rounded-md focus:bg-gray-100 focus:outline-none">
-                            <h1 class="text-gray-500 font-semibold">20.000</h1>
-                            <img loading="lazy"class="w-4 h-4 cursor-pointer" src="./images/home/trashRed.png" alt="trash">
-                        </div>
-                        <div class="flex justify-between items-center mt-3">
-                            <h1 class="font-semibold">iphone 13</h1>
-                            <input placeholder="1" type="number" min="1" max="20" class="w-10 text-center h-8 text-xs p-1 border border-gray-400 rounded-md focus:bg-gray-100 focus:outline-none">
-                            <h1 class="text-gray-500 font-semibold">20.000</h1>
-                            <img loading="lazy"class="w-4 h-4 cursor-pointer" src="./images/home/trashRed.png" alt="trash">
-                        </div>
-                        <div class="flex justify-between items-center mt-3">
-                            <h1 class="font-semibold">iphone 13</h1>
-                            <input placeholder="1" type="number" min="1" max="20" class="w-10 text-center h-8 text-xs p-1 border border-gray-400 rounded-md focus:bg-gray-100 focus:outline-none">
-                            <h1 class="text-gray-500 font-semibold">20.000</h1>
-                            <img loading="lazy"class="w-4 h-4 cursor-pointer" src="./images/home/trashRed.png" alt="trash">
-                        </div>
-                        <div class="flex justify-between items-center mt-3">
-                            <h1 class="font-semibold">iphone 13</h1>
-                            <input placeholder="1" type="number" min="1" max="20" class="w-10 text-center h-8 text-xs p-1 border border-gray-400 rounded-md focus:bg-gray-100 focus:outline-none">
-                            <h1 class="text-gray-500 font-semibold">20.000</h1>
-                            <img loading="lazy"class="w-4 h-4 cursor-pointer" src="./images/home/trashRed.png" alt="trash">
-                        </div>
-                        <div class="flex justify-between items-center mt-3">
-                            <h1 class="font-semibold">iphone 13</h1>
-                            <input placeholder="1" type="number" min="1" max="20" class="w-10 text-center h-8 text-xs p-1 border border-gray-400 rounded-md focus:bg-gray-100 focus:outline-none">
-                            <h1 class="text-gray-500 font-semibold">20.000</h1>
-                            <img loading="lazy"class="w-4 h-4 cursor-pointer" src="./images/home/trashRed.png" alt="trash">
-                        </div>
-                    </div>
-
-
-
-                    <div class="">
-                        <!-- line -->
-                        <h1 class="border-b mt-3"></h1>
-
-                        <!-- sale -->
-                        <div class="flex items-center space-x-6 mt-2">
-                            <h1 class="capitalize text-gray-400">Sale</h1>
-                            <h1 class="font-semibold text-gray-400">10%</h1>
-                        </div>
-
-                        <!-- sub total -->
-                        <div class="flex items-center space-x-6 mt-2">
-                            <h1 class="capitalize text-gray-400">subTotal</h1>
-                            <h1 class="font-semibold text-gray-400">20.000</h1>
-                        </div>
-
-                        <!-- total -->
-                        <div class="flex items-center space-x-6 mt-2">
-                            <h1 class="capitalize font-semibold text-gray-400">Total</h1>
-                            <h1 class="font-semibold">18.000</h1>
-                        </div>
-
-
-                        <!-- sub total -->
-                        <div class="flex items-center justify-between space-x-6 mt-2">
-                            <h1 class="capitalize font-semibold text-gray-400">ba2y</h1>
-                            <h1 class="font-semibold">11</h1>
-                            <select class=" capitalize text-sm w-full md:w-36 h-10 bg-gray-200 text-gray-600 rounded-md focus:bg-gray-100 focus:outline-none">
-                                <option value=""  selected>cash</option>
-                                <option value="">t2set</option>
-                            </select>
-                        </div>
-                        <div class="flex justify-between items-center mt-6">
-                            <input placeholder="paied" type="text" class="w-64 capitalize ltr:pl-3 rtl:pr-3 h-10 text-sm p-1 bg-gray-300 rounded-xl focus:bg-gray-100 focus:outline-none">
-                            <button class="bg-[#ff440f] text-white font-semibold w-40 h-10 capitalize text-center rounded-xl">
-                                Cash
-                            </button>
-                        </div>
 
                     </div>
 
+
+                    <div class="col-span-1 hidden md:block shadow-sm p-3 mt-5 md:mt-0 bg-white rounded">
+                        <!-- image offer -->
+                        <img class="w-full h-40 rounded" src="./images/rightSidebar/offer.png" alt="offer image"
+                            loading="lazy">
+                    </div>
                 </div>
-
-            </div>
-            
-            <!-- flat button -->
-            <div class="block md:hidden">
-                <div class='multi-action'>
-                <button class='action-button'><span class='fa fa-plus'></span></button>
-                <ul class='actions'>
-                    <li>
-                        <a>
-                            <span>
-                                <a x-data="{ open: false }">
-                                    <button x-on:click="open = true"
-                                        class="w-12 h-12 flex items-center justify-center p-1 bg-white rounded shadow hover:drop-shadow-xl">
-                                        <img loading="lazy"class="w-12 h-12 object-contain" src="./images/home/group_icon.png" alt="icon image">
-                                    </button>
-                                    <!-- Modal product -->
-                                    <div x-show="open" x-on:keydown.escape.prevent.stop="open = false" role="dialog"
-                                    aria-modal="true" x-id="['modal-title']" :aria-labelledby="$id('modal-title')"
-                                    class="w-min-full absolute ltr:right-10 rtl:left-10 -bottom-16  md:right-72 md:bottom-40 overflow-y-auto justify-center items-center">
-                                    <!-- Overlay -->
-                                    <!-- <div x-show="open" x-transition.opacity class="fixed inset-0 bg-black bg-opacity-50"></div> -->
-            
-                                    <!-- Panel -->
-                                    <div x-show="open" x-transition x-on:click="open = false"
-                                        class="relative flex items-center justify-center p-2 md:p-4 w-72">
-                                        <div x-on:click.stop x-trap.noscroll.inert="open"
-                                            class="relative max-w-4xl w-full bg-white p-4 overflow-y-auto rounded-xl">
-                                            <!-- Title -->
-                                            <div class="flex items-center justify-center">
-                                                <h2 class="text-xl md:text-2xl text-black font-medium capitalize border-b-2 border-mainColor w-32 md:w-44" :id="$id('modal-title')">add product</h2>
-                                                <svg x-on:click="open = false" xmlns="http://www.w3.org/2000/svg" width="25"
-                                                    height="25" fill="white"
-                                                    class="bi bi-x ltr:ml-auto rtl:mr-auto cursor-pointer bg-mainColor w-6 rounded-full" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-                                                </svg>
-                                            </div>
-                                            <!-- Content -->
-                                            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 mt-5 md:space-x-5 md">
-                                                <div class="col-span-2">
-                                                    <div class="md:flex mb-3 space-y-3 md:space-y-0">
-                                                        <button class="w-full md:w-40 h-10 bg-mainColor flex items-center justify-center text-white font-semibold rounded shadow">
-                                                            <img loading="lazy"class="m-3 w-4" src="./images/home/package44.svg" alt="package image">
-                                                            Product
-                                                        </button>
-                                                        <button class="w-full md:w-40 h-10 md:ltr:ml-3 md:rtl:mr-3 bg-mainColor flex items-center justify-center text-white font-semibold rounded shadow">
-                                                            <img loading="lazy"class="m-3 w-4" src="./images/home/create-dashboard88.svg" alt="package image">
-                                                            categroy
-                                                        </button>
-                                                    </div>
-                                                    <div class="md:flex mb-3 space-y-3 md:space-y-0">
-                                                        <button class="w-full md:w-40 h-10 bg-mainColor flex items-center justify-center text-white font-semibold rounded shadow">
-                                                            <img loading="lazy"class="m-3 w-4" src="./images/home/balance33.svg" alt="package image">
-                                                            unit
-                                                        </button>
-                                                        <button class="w-full md:w-40 h-10 md:ltr:ml-3 md:rtl:mr-3 bg-mainColor flex items-center justify-center text-white font-semibold rounded shadow">
-                                                            <img loading="lazy"class="m-3 w-4" src="./images/home/users11.svg" alt="package image">
-                                                            client
-                                                        </button>
-                                                    </div>
-                                                    <div class="md:flex mb-3 space-y-3 md:space-y-0">
-                                                        <button class="w-full md:w-40 h-10 bg-mainColor flex items-center justify-center text-white font-semibold rounded shadow">
-                                                            <img loading="lazy"class="m-3 w-4" src="./images/home/bill22.svg" alt="package image">
-                                                            order
-                                                        </button>
-                                                        <button class="w-full md:w-40 h-10 md:ltr:ml-3 md:rtl:mr-3 bg-mainColor flex items-center justify-center text-white font-semibold rounded shadow">
-                                                            <img loading="lazy"class="m-3 w-4" src="./images/home/shipping-truck77.svg" alt="package image">
-                                                            Supplier
-                                                        </button>
-                                                    </div>
-                                                    <div class="md:flex mb-3 space-y-3 md:space-y-0">
-                                                        <button class="w-full md:w-40 h-10 bg-mainColor flex items-center justify-center text-white font-semibold rounded shadow">
-                                                            <img loading="lazy"class="m-3 w-4" src="./images/home/shop55.svg" alt="package image">
-                                                            branch
-                                                        </button>
-                                                        <button class="w-full md:w-40 h-10 md:ltr:ml-3 md:rtl:mr-3 bg-mainColor flex items-center justify-center text-white font-semibold rounded shadow">
-                                                            <img loading="lazy"class="m-3 w-4" src="./images/home/add-account66.svg" alt="package image">
-                                                            empolyee
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div class="col-span-2">
-                                                    <img loading="lazy"class="hidden md:flex w-80 object-contain" src="./images/home/dialog_add_image.png" alt="image modal product">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                </a>
-                            </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a>
-                            <span>
-                                <a href="./casherCategory.html">
-                                    <button
-                                        class="w-12 h-12 flex items-center justify-center bg-white rounded shadow hover:drop-shadow-xl">
-                                        <img loading="lazy"class="w-8 h-8" src="./images/home/withdrawal.png" alt="icon image">
-                                    </button>
-                                </a>
-                            </span>
-                        </a>
-                    </li>
-                </ul>
-                </div>
-                <div id="overlay"></div>
-            </div>
-            <!-- end flat button -->
-            
-        </main>
-    </div>
-
-    <!-- Setting panel button -->
-    <div>
-        <button @click="isSettingsPanelOpen = true"
-            class="fixed ltr:right-0 rtl:-left-16 px-4 py-2 text-sm font-medium text-white uppercase transform rotate-90 translate-x-8 bg-gray-600 top-1/2 ltr:rounded-b-md rtl:rounded-t-md">
-            Settings
-        </button>
-    </div>
-
-    <!-- Settings panel -->
-    <div x-show="isSettingsPanelOpen" @click.away="isSettingsPanelOpen = false"
-        x-transition:enter="transition transform duration-300"
-        x-transition:enter-start="translate-x-full opacity-30  ease-in"
-        x-transition:enter-end="translate-x-0 opacity-100 ease-out"
-        x-transition:leave="transition transform duration-300"
-        x-transition:leave-start="translate-x-0 opacity-100 ease-out"
-        x-transition:leave-end="translate-x-full opacity-0 ease-in"
-        class="fixed inset-y-0 right-0 flex flex-col bg-white shadow-lg bg-opacity-20 w-80"
-        style="backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px)">
-        <div class="flex items-center justify-between flex-shrink-0 p-2">
-            <h6 class="p-2 text-lg">Settings</h6>
-            <button @click="isSettingsPanelOpen = false" class="p-2 rounded-md focus:outline-none focus:ring">
-                <svg class="w-6 h-6 text-gray-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
-        </div>
-        <div class="flex-1 max-h-full p-4 overflow-hidden hover:overflow-y-scroll">
-            <span>Settings Content</span>
-            <!-- Settings Panel Content ... -->
+            </main>
         </div>
     </div>
-</div>
-<!-- end home page -->
+    <!-- end home page -->
 
 
 
 
 
+    <!-- scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.js"></script>
     <script src="./js/main.js"></script>
-    
+
     <!-- script addtional css i want  -->
     <script>
         tailwind.config = {
@@ -924,7 +565,6 @@
             }
         }
     </script>
+
 </body>
-
 </html>
-
