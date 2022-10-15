@@ -11,7 +11,7 @@
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.css" />
     <link rel="stylesheet" href="./style/style.css" type="text/html">
-    <title>Nakeeb | contact us</title>
+    <title>contact us</title>
 </head>
 
 <body>
@@ -21,11 +21,11 @@
     <div class="flex h-screen overflow-y-hidden bg-white" x-data="setup()"
         x-init="$refs.loading.classList.add('hidden')">
         <!-- Loading screen -->
-        <!-- <div x-ref="loading"
+        <div x-ref="loading"
         class="fixed inset-0 z-50 flex items-center justify-center text-white bg-white bg-opacity-50"
         style="backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px)">
-        <img loading="lazy"src="./images/login/logo.svg" alt="image logo">
-    </div> -->
+        <img class="w-40 object-contain" loading="lazy"src="./images/logo/logo.png" alt="image logo">
+        </div> 
 
         <!-- Sidebar backdrop -->
         <div x-show.in.out.opacity="isSidebarOpen" class="fixed inset-0 z-10 bg-black bg-opacity-20 lg:hidden"
