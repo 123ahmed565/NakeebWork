@@ -195,8 +195,8 @@
 
                     <!-- Navbar left mobile only -->
                     <div class="block md:hidden flex items-center lg:space-x-3">
-                        <img @click="toggleSidbarMenu()" class="w-8 h-6 object-contain p-1" src="./images/header/menu.png"
-                            alt="menu image" loading="lazy">
+                        <img @click="toggleSidbarMenu()" class="w-8 h-6 object-contain p-1"
+                            src="./images/header/menu.png" alt="menu image" loading="lazy">
                     </div>
 
                     <!-- Mobile search box -->
@@ -235,26 +235,28 @@
 
                     <!-- Desktop search & buttons -->
                     <div class="relative md:flex hidden px-2 space-x-2 md:flex-1">
-                        <!-- search icon -->
-                        <div class="relative mr-4">
-                            <span class="absolute top-3 right-2 mr-3 cursor-pointer">
-                                <svg class="w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                </svg>
-                            </span>
-                            <input type="text" placeholder="do you need help...?"
-                                class="w-[46rem] h-11 px-4 py-3 bg-[#] border border border-gray-300 rounded-full font-bold capitalize text-gray-500 text-xs md:py-2 md:flex-1 focus:outline-none focus:text-black" />
+                        <div class="relative mt-1 rounded-md shadow-sm">
+                            <div class="absolute inset-y-0 left-0 flex items-center">
+                            <!-- <label for="currency" class="sr-only">Currency</label> -->
+                            <select class="h-full rounded-md border-transparent bg-transparent py-0 pl-2 pr-7 text-gray-500 sm:text-sm">
+                                <option>font</option>
+                                <option>font</option>
+                                <option>font</option>
+                            </select>
+                            </div>
+                        <input type="text" class="w-[46rem] h-11 pl-28 px-4 py-3 bg-[#] border border border-gray-300 rounded-full font-bold capitalize text-gray-500 text-xs md:py-2 md:flex-1 focus:outline-none focus:text-black" placeholder="search here">
                         </div>
+                        <!-- butons -->
                         <div class="flex items-center space-x-3">
                             <!-- buttons General -->
-                            <a href="./saved.html" class="flex items-center bg-[#F5F7FC] rounded-full pl-4 pr-4 pt-2 pb-2 capitalize ml-2 font-semibold text-gray-700 hover:text-[#4285f4] transition duration-150 ease-out">
+                            <a href="./saved.html"
+                                class="flex items-center bg-[#F5F7FC] rounded-full pl-4 pr-4 pt-2 pb-2 capitalize ml-2 font-semibold text-gray-700 hover:text-[#4285f4] transition duration-150 ease-out">
                                 <!-- <img class="w-8 h-7" src="./images/header/heart.png" alt="save image" loading="lazy"> -->
                                 <i class="fas fa-heart mr-2"></i>
                                 saved
                             </a>
-                            <a href="./contactUs.html" class="flex items-center bg-[#F5F7FC] rounded-full pl-4 pr-4 pt-2 pb-2 capitalize ml-2 font-semibold text-gray-700 hover:text-[#4285f4] transition duration-150 ease-out">
+                            <a href="./contactUs.html"
+                                class="flex items-center bg-[#F5F7FC] rounded-full pl-4 pr-4 pt-2 pb-2 capitalize ml-2 font-semibold text-gray-700 hover:text-[#4285f4] transition duration-150 ease-out">
                                 <!-- <img class="w-8 h-7" src="./images/header/contact.png" alt="contact image" loading="lazy"> -->
                                 <i class="fas fa-envelope mr-2"></i>
                                 contact
