@@ -40,3 +40,5 @@ const setup = () => {
   $('.actinThis').on('click', function(){
     $(this).addClass('activeBackground');
   });
+
+
