@@ -67,7 +67,7 @@
                 <nav class="flex-1 overflow-hidden hover:overflow-y-auto">
                     <ul class="p-2 overflow-hidden">
                         <li>
-                            <img class="w-14 h-12 object-contain mx-auto" src="./images/logo/logo.png" alt="image logo"
+                            <img class="w-12 h-12 object-contain mx-auto" src="./images/logo/logo.png" alt="image logo"
                                 loading="lazy">
                         </li>
                         <!-- font icon -->
@@ -96,7 +96,7 @@
 
                         <!-- color icon -->
                         <li class="mt-3">
-                            <a href="#"
+                            <a href="./colorPalette.html"
                                 class="flex justify-center items-center p-2 space-x-2 rounded-md hover:text-[#ff440f] hover:drop-shadow transition"
                                 :class="{'justify-center': !isSidebarOpen}">
                                 <img class="w-6 h-6" src="./images/leftSidebar/color.png" alt="color image"
@@ -408,7 +408,7 @@
                                                         <div x-ref="panel" x-show="open" x-transition.origin.top.left
                                                             x-on:click.outside="close($refs.button)" :id="$id('dropdown-button')"
                                                             style="display: none;" class="absolute w-full mt-2 z-20 bg-white rounded right-28">
-                                                            <div class="bg-gray-100 w-56 rounded">
+                                                            <div class="bg-gray-100 w-44 rounded">
 
                                                                 <!--start modal popup-->
                                                                 <div x-data="{qopen:false}" @keydown.window.escape.stop="qopen = false" @click.away="qopen = false"
@@ -471,7 +471,7 @@
                                                                                         x-id="['dropdown-button']" class="relative ml-5">
                                                                                         <!-- Button -->
                                                                                         <button x-ref="button" x-on:click="toggle()" :aria-expanded="open"
-                                                                                            :aria-controls="$id('dropdown-button')" type="button" class="flex items-center justify-between border-0 capitalize text-gray-700 font-semibold rounded pl-3 pr-5 pt-2 pb-2">
+                                                                                            :aria-controls="$id('dropdown-button')" type="button" class="flex items-center justify-between border-0 capitalize text-gray-700 font-semibold rounded pr-1">
                                                                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="gray" class="bi bi-three-dots mx-auto" viewBox="0 0 16 16">
                                                                                                 <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
                                                                                             </svg>
@@ -493,7 +493,7 @@
                                                                                                     class="flex items-center w-full px-2 py-2 text-left text-md font-semibold hover:bg-white transition duration-150 ease-out">
                                                                                                     <p class="ml-2 capitalize text-bold text-gray-800">
                                                                                                         <i class="far fa-copy mr-1"></i>
-                                                                                                        copy hwb</p>
+                                                                                                        copy gradient id</p>
                                                                                                 </a>
 
                                                                                                 <a href="#"
@@ -521,18 +521,18 @@
                                                                         </div>
                                                                     </div>
                                                                     <!-- Content -->
-                                                                    <div class="block mt-10">
+                                                                    <div class="block mt-5">
                                                                         <div class="bg-gradient-to-r from-[#be9dd9] to-[#fbc2eb] w-full h-56 rounded-xl hover:shadow-md"></div>
                                                                         <div class="flex justify-center space-x-2 mt-2">
                                                                             <p class="w-8 h-8 rounded-full bg-[#be9dd9]"></p>
                                                                             <p class="w-8 h-8 rounded-full bg-[#fbc2eb]"></p>
                                                                         </div>
-                                                                        <div class="flex justify-center items-center mt-10 space-x-4">
-                                                                            <button class="bg-[#f4f7fc] pl-3 pr-3 pt-2 pb-2 rounded uppercase text-xl font-semibold text-[#a7aab9]">hex</button>
-                                                                            <button class="bg-[#f4f7fc] pl-3 pr-3 pt-2 pb-2 rounded uppercase text-xl font-semibold text-[#a7aab9]">hsb</button>
-                                                                            <button class="bg-[#f4f7fc] pl-3 pr-3 pt-2 pb-2 rounded uppercase text-xl font-semibold text-[#a7aab9]">hsl</button>
-                                                                            <button class="bg-[#f4f7fc] pl-3 pr-3 pt-2 pb-2 rounded uppercase text-xl font-semibold text-[#a7aab9]">rgp</button>
-                                                                            <button class="bg-[#f4f7fc] pl-3 pr-3 pt-2 pb-2 rounded uppercase text-xl font-semibold text-[#a7aab9]">cmyk</button>
+                                                                        <div class="flex justify-center items-center mt-5 space-x-4">
+                                                                            <button class="bg-[#f4f7fc] w-16 h-10 rounded uppercase text-lg font-semibold text-[#a7aab9]">hex</button>
+                                                                            <button class="bg-[#f4f7fc] w-16 h-10 rounded uppercase text-lg font-semibold text-[#a7aab9]">hsb</button>
+                                                                            <button class="bg-[#f4f7fc] w-16 h-10 rounded uppercase text-lg font-semibold text-[#a7aab9]">hsl</button>
+                                                                            <button class="bg-[#f4f7fc] w-16 h-10 rounded uppercase text-lg font-semibold text-[#a7aab9]">rgp</button>
+                                                                            <button class="bg-[#f4f7fc] w-16 h-10 rounded uppercase text-lg font-semibold text-[#a7aab9]">cmyk</button>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -546,13 +546,6 @@
                                                                 <!-----END modal popup----------->
 
                                                                 <a href="#"
-                                                                class="flex items-center w-full px-2 py-2 text-left text-md font-semibold hover:bg-white transition duration-150 ease-out">
-                                                                <p class="ml-2 capitalize text-sm text-bold text-gray-800">
-                                                                    <i class="fa fa-palette mr-1"></i>
-                                                                    open in the generator</p>
-                                                                </a>
-
-                                                                <a href="#"
                                                                     class="flex items-center w-full px-2 py-2 text-left text-md font-semibold hover:bg-white transition duration-150 ease-out">
                                                                     <p class="ml-2 capitalize text-sm text-bold text-gray-800">
                                                                         <i class="fa fa-download mr-1"></i>
@@ -577,7 +570,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="hidden absolute top-7 left-7 group-hover:block">
+                                <div class="hidden absolute top-5 left-5 group-hover:block">
                                     <i class="far fa-copy text-gray-200 text-xl"></i>
                                 </div>
                             </div>
@@ -621,7 +614,7 @@
                                                         <div x-ref="panel" x-show="open" x-transition.origin.top.left
                                                             x-on:click.outside="close($refs.button)" :id="$id('dropdown-button')"
                                                             style="display: none;" class="absolute w-full mt-2 z-20 bg-white rounded right-28">
-                                                            <div class="bg-gray-100 w-56 rounded">
+                                                            <div class="bg-gray-100 w-44 rounded">
 
 
                                                                 <a href="#"
@@ -629,13 +622,6 @@
                                                                 <p class="ml-2 capitalize text-sm text-bold text-gray-800">
                                                                     <i class="fa fa-eye mr-1"></i>
                                                                     quick view</p>
-                                                                </a>
-
-                                                                <a href="#"
-                                                                class="flex items-center w-full px-2 py-2 text-left text-md font-semibold hover:bg-white transition duration-150 ease-out">
-                                                                <p class="ml-2 capitalize text-sm text-bold text-gray-800">
-                                                                    <i class="fa fa-palette mr-1"></i>
-                                                                    open in the generator</p>
                                                                 </a>
 
                                                                 <a href="#"
@@ -663,7 +649,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="hidden absolute top-7 left-7 group-hover:block">
+                                <div class="hidden absolute top-5 left-5 group-hover:block">
                                     <i class="far fa-copy text-gray-200 text-xl"></i>
                                 </div>
                             </div>
@@ -707,7 +693,7 @@
                                                         <div x-ref="panel" x-show="open" x-transition.origin.top.left
                                                             x-on:click.outside="close($refs.button)" :id="$id('dropdown-button')"
                                                             style="display: none;" class="absolute w-full mt-2 z-20 bg-white rounded right-28">
-                                                            <div class="bg-gray-100 w-56 rounded">
+                                                            <div class="bg-gray-100 w-44 rounded">
 
 
                                                                 <a href="#"
@@ -715,13 +701,6 @@
                                                                 <p class="ml-2 capitalize text-sm text-bold text-gray-800">
                                                                     <i class="fa fa-eye mr-1"></i>
                                                                     quick view</p>
-                                                                </a>
-
-                                                                <a href="#"
-                                                                class="flex items-center w-full px-2 py-2 text-left text-md font-semibold hover:bg-white transition duration-150 ease-out">
-                                                                <p class="ml-2 capitalize text-sm text-bold text-gray-800">
-                                                                    <i class="fa fa-palette mr-1"></i>
-                                                                    open in the generator</p>
                                                                 </a>
 
                                                                 <a href="#"
@@ -749,7 +728,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="hidden absolute top-7 left-7 group-hover:block">
+                                <div class="hidden absolute top-5 left-5 group-hover:block">
                                     <i class="far fa-copy text-gray-200 text-xl"></i>
                                 </div>
                             </div>
@@ -793,7 +772,7 @@
                                                         <div x-ref="panel" x-show="open" x-transition.origin.top.left
                                                             x-on:click.outside="close($refs.button)" :id="$id('dropdown-button')"
                                                             style="display: none;" class="absolute w-full mt-2 z-20 bg-white rounded right-28">
-                                                            <div class="bg-gray-100 w-56 rounded">
+                                                            <div class="bg-gray-100 w-44 rounded">
 
 
                                                                 <a href="#"
@@ -801,13 +780,6 @@
                                                                 <p class="ml-2 capitalize text-sm text-bold text-gray-800">
                                                                     <i class="fa fa-eye mr-1"></i>
                                                                     quick view</p>
-                                                                </a>
-
-                                                                <a href="#"
-                                                                class="flex items-center w-full px-2 py-2 text-left text-md font-semibold hover:bg-white transition duration-150 ease-out">
-                                                                <p class="ml-2 capitalize text-sm text-bold text-gray-800">
-                                                                    <i class="fa fa-palette mr-1"></i>
-                                                                    open in the generator</p>
                                                                 </a>
 
                                                                 <a href="#"
@@ -835,7 +807,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="hidden absolute top-7 left-7 group-hover:block">
+                                <div class="hidden absolute top-5 left-5 group-hover:block">
                                     <i class="far fa-copy text-gray-200 text-xl"></i>
                                 </div>
                             </div>
@@ -879,7 +851,7 @@
                                                         <div x-ref="panel" x-show="open" x-transition.origin.top.left
                                                             x-on:click.outside="close($refs.button)" :id="$id('dropdown-button')"
                                                             style="display: none;" class="absolute w-full mt-2 z-20 bg-white rounded right-28">
-                                                            <div class="bg-gray-100 w-56 rounded">
+                                                            <div class="bg-gray-100 w-44 rounded">
 
 
                                                                 <a href="#"
@@ -887,13 +859,6 @@
                                                                 <p class="ml-2 capitalize text-sm text-bold text-gray-800">
                                                                     <i class="fa fa-eye mr-1"></i>
                                                                     quick view</p>
-                                                                </a>
-
-                                                                <a href="#"
-                                                                class="flex items-center w-full px-2 py-2 text-left text-md font-semibold hover:bg-white transition duration-150 ease-out">
-                                                                <p class="ml-2 capitalize text-sm text-bold text-gray-800">
-                                                                    <i class="fa fa-palette mr-1"></i>
-                                                                    open in the generator</p>
                                                                 </a>
 
                                                                 <a href="#"
@@ -921,7 +886,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="hidden absolute top-7 left-7 group-hover:block">
+                                <div class="hidden absolute top-5 left-5 group-hover:block">
                                     <i class="far fa-copy text-gray-200 text-xl"></i>
                                 </div>
                             </div>
@@ -965,7 +930,7 @@
                                                         <div x-ref="panel" x-show="open" x-transition.origin.top.left
                                                             x-on:click.outside="close($refs.button)" :id="$id('dropdown-button')"
                                                             style="display: none;" class="absolute w-full mt-2 z-20 bg-white rounded right-28">
-                                                            <div class="bg-gray-100 w-56 rounded">
+                                                            <div class="bg-gray-100 w-44 rounded">
 
 
                                                                 <a href="#"
@@ -973,13 +938,6 @@
                                                                 <p class="ml-2 capitalize text-sm text-bold text-gray-800">
                                                                     <i class="fa fa-eye mr-1"></i>
                                                                     quick view</p>
-                                                                </a>
-
-                                                                <a href="#"
-                                                                class="flex items-center w-full px-2 py-2 text-left text-md font-semibold hover:bg-white transition duration-150 ease-out">
-                                                                <p class="ml-2 capitalize text-sm text-bold text-gray-800">
-                                                                    <i class="fa fa-palette mr-1"></i>
-                                                                    open in the generator</p>
                                                                 </a>
 
                                                                 <a href="#"
@@ -1007,7 +965,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="hidden absolute top-7 left-7 group-hover:block">
+                                <div class="hidden absolute top-5 left-5 group-hover:block">
                                     <i class="far fa-copy text-gray-200 text-xl"></i>
                                 </div>
                             </div>
@@ -1051,7 +1009,7 @@
                                                         <div x-ref="panel" x-show="open" x-transition.origin.top.left
                                                             x-on:click.outside="close($refs.button)" :id="$id('dropdown-button')"
                                                             style="display: none;" class="absolute w-full mt-2 z-20 bg-white rounded right-28">
-                                                            <div class="bg-gray-100 w-56 rounded">
+                                                            <div class="bg-gray-100 w-44 rounded">
 
 
                                                                 <a href="#"
@@ -1059,13 +1017,6 @@
                                                                 <p class="ml-2 capitalize text-sm text-bold text-gray-800">
                                                                     <i class="fa fa-eye mr-1"></i>
                                                                     quick view</p>
-                                                                </a>
-
-                                                                <a href="#"
-                                                                class="flex items-center w-full px-2 py-2 text-left text-md font-semibold hover:bg-white transition duration-150 ease-out">
-                                                                <p class="ml-2 capitalize text-sm text-bold text-gray-800">
-                                                                    <i class="fa fa-palette mr-1"></i>
-                                                                    open in the generator</p>
                                                                 </a>
 
                                                                 <a href="#"
@@ -1093,7 +1044,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="hidden absolute top-7 left-7 group-hover:block">
+                                <div class="hidden absolute top-5 left-5 group-hover:block">
                                     <i class="far fa-copy text-gray-200 text-xl"></i>
                                 </div>
                             </div>
@@ -1137,7 +1088,7 @@
                                                         <div x-ref="panel" x-show="open" x-transition.origin.top.left
                                                             x-on:click.outside="close($refs.button)" :id="$id('dropdown-button')"
                                                             style="display: none;" class="absolute w-full mt-2 z-20 bg-white rounded right-28">
-                                                            <div class="bg-gray-100 w-56 rounded">
+                                                            <div class="bg-gray-100 w-44 rounded">
 
 
                                                                 <a href="#"
@@ -1145,13 +1096,6 @@
                                                                 <p class="ml-2 capitalize text-sm text-bold text-gray-800">
                                                                     <i class="fa fa-eye mr-1"></i>
                                                                     quick view</p>
-                                                                </a>
-
-                                                                <a href="#"
-                                                                class="flex items-center w-full px-2 py-2 text-left text-md font-semibold hover:bg-white transition duration-150 ease-out">
-                                                                <p class="ml-2 capitalize text-sm text-bold text-gray-800">
-                                                                    <i class="fa fa-palette mr-1"></i>
-                                                                    open in the generator</p>
                                                                 </a>
 
                                                                 <a href="#"
@@ -1179,7 +1123,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="hidden absolute top-7 left-7 group-hover:block">
+                                <div class="hidden absolute top-5 left-5 group-hover:block">
                                     <i class="far fa-copy text-gray-200 text-xl"></i>
                                 </div>
                             </div>
