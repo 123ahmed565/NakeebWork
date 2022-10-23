@@ -23,10 +23,19 @@ body{
 }
 
 ::-webkit-scrollbar-thumb{
-    background:linear-gradient(#ff440f, black);
+    background:linear-gradient(#2668db, white);
     border-radius: 8px;
 }
 
+
+.scrollHide::-webkit-scrollbar {
+    display: none !important;
+}
+
+.scrollHide{
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;  
+}
 
 
 /* choose color with padding style */
