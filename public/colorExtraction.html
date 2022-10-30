@@ -11,7 +11,7 @@
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.css" />
     <link rel="stylesheet" href="./css/style.css">
-    <title>contact us</title>
+    <title>Color Extraction</title>
 </head>
 
 <body>
@@ -279,33 +279,77 @@
             <main class="flex-1 max-h-full p-2 overflow-hidden overflow-y-scroll">
                 <!-- grid content -->
                 <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-5 space-x-2">
-                    <div class="col-span-4">
-                        <div class="bg-white p-4 rounded">
-                            <p class="capitalize font-semibold text-[#404456] text-xl">contact us</p>
-                        </div>
-                        <div class="bg-white p-3 mt-2">
-                            <div class="bg-[#F4F7FC] p-3">
-                                <form>
-                                    <div class="grid grid-cols-1 sm:grid cols-1 md:grid-cols-5 space-x-2">
-                                        <div class="col-span-3">
-                                            <textarea class="w-full" cols="30" rows="8"></textarea>
-                                        </div>
-                                        <div class="col-span-2">
-                                            <input class="capitalize mb-3 text-sm font-semibold text-[#A7AAB9] p-2 rounded bg-white w-full" type="text" placeholder="your name">
-                                            <input class="capitalize mb-3 text-sm font-semibold text-[#A7AAB9] p-2 rounded bg-white w-full" type="email" placeholder="your email">
-                                            <input class="capitalize mb-5 text-sm font-semibold text-[#B0B2C0] p-2 rounded bg-[#FFFFFF] w-full" type="text" placeholder="Add HWB Number">
-                                            <input type="submit" class="capitalize text-sm mb-3 font-bold text-white p-2 rounded bg-[#4285F4] w-full">
 
+                    <div class="col-span-4 shadow-lg">
+                        <!-- catgeory -->
+                        <div class="p-5 bg-white rounded">
+                            <!-- change image -->
+                            <div class="avatar-upload">
+                                <div class="avatar-edit">
+                                    <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                                    <label for="imageUpload">
+                                        <div class="avatar-preview mx-auto d-block ">
+                                            <div id="imagePreview" style="background-image: url(../public/images/logo/logo.png);">
+                                            </div>
                                         </div>
-                                    </div>
-                                </form>
+                                    </label>
+                                </div>
                             </div>
+                            <!-- data option for color -->
+                            <form class="flex items-center justify-center space-x-4 mt-3">
+                                <!-- botton run -->
+                                <input type="submit" value="Run" class="cursor-pointer mt-2 capitalize w-60 h-8 text-sm font-semibold text-center bg-[#f4f7fc] rounded">
+                            </form>
+                                <!-- colors -->
+                                <div class="flex items-center justify-center space-x-4 mt-4">
+                                    <button class="bg-black w-10 h-10 rounded-full border-0 shadow focus:outline-none focus:ring focus:ring-offset-2 focus:ring-[#3776dc]-8"></button>
+                                    <button class="bg-[#FF0C3E] w-10 h-10 rounded-full border-0 shadow focus:outline-none focus:ring focus:ring-offset-2 focus:ring-[#3776dc]-8"></button>
+                                    <button class="bg-[#FF8800] w-10 h-10 rounded-full border-0 shadow focus:outline-none focus:ring focus:ring-offset-2 focus:ring-[#3776dc]-8"></button>
+                                    <button class="bg-[#FFE300] w-10 h-10 rounded-full border-0 shadow focus:outline-none focus:ring focus:ring-offset-2 focus:ring-[#3776dc]-8"></button>
+                                    <button class="bg-[#9F631E] w-10 h-10 rounded-full border-0 shadow focus:outline-none focus:ring focus:ring-offset-2 focus:ring-[#3776dc]-8"></button>
+                                    <button class="bg-[#79E62B] w-10 h-10 rounded-full border-0 shadow focus:outline-none focus:ring focus:ring-offset-2 focus:ring-[#3776dc]-8"></button>
+                                    <button class="bg-[#FF5DCD] w-10 h-10 rounded-full border-0 shadow focus:outline-none focus:ring focus:ring-offset-2 focus:ring-[#3776dc]-8"></button>
+                                    <button class="bg-[#3A53FF] w-10 h-10 rounded-full border-0 shadow focus:outline-none focus:ring focus:ring-offset-2 focus:ring-[#3776dc]-8"></button>
+                                    <button class="bg-[#A9A2A0] w-10 h-10 rounded-full border-0 shadow focus:outline-none focus:ring focus:ring-offset-2 focus:ring-[#3776dc]-8"></button>
+                                    <button class="bg-[#B835DF] w-10 h-10 rounded-full border-0 shadow focus:outline-none focus:ring focus:ring-offset-2 focus:ring-[#3776dc]-8"></button>
+                                    <button class="bg-[#F1D299] w-10 h-10 rounded-full border-0 shadow focus:outline-none focus:ring focus:ring-offset-2 focus:ring-[#3776dc]-8"></button>
+                                </div>
+                            <!-- form hexa -->
+                            <form class="flex items-center space-x-3 justify-center mt-4">
+                                <div class="flex space-x-2 items-center">
+                                    <label for="" class="uppercase text-gray-500 font-semibold">hex</label>
+                                    <input type="text" class="w-16 h-8 bg-[#f4f7fc] rounded border border-gray-300 focus:outline-none text-center">
+                                </div>
+                                <div class="flex space-x-2 items-center">
+                                    <label for="" class="uppercase text-gray-500 font-semibold">rgb</label>
+                                    <input type="text" class="w-16 h-8 bg-[#f4f7fc] rounded border border-gray-300 focus:outline-none text-center">
+                                </div>
+                                <div class="flex space-x-2 items-center">
+                                    <label for="" class="uppercase text-gray-500 font-semibold">cnyk</label>
+                                    <input type="text" class="w-16 h-8 bg-[#f4f7fc] rounded border border-gray-300 focus:outline-none text-center">
+                                </div>
+                                <div class="flex space-x-2 items-center">
+                                    <label for="" class="uppercase text-gray-500 font-semibold">hsl</label>
+                                    <input type="text" class="w-16 h-8 bg-[#f4f7fc] rounded border border-gray-300 focus:outline-none text-center">
+                                </div>
+                                <div class="flex space-x-2 items-center">
+                                    <label for="" class="uppercase text-gray-500 font-semibold">hsb</label>
+                                    <input type="text" class="w-16 h-8 bg-[#f4f7fc] rounded border border-gray-300 focus:outline-none text-center">
+                                </div>
+                                <div class="flex space-x-2 items-center">
+                                    <label for="" class="uppercase text-gray-500 font-semibold">lab</label>
+                                    <input type="text" class="w-16 h-8 bg-[#f4f7fc] rounded border border-gray-300 focus:outline-none text-center">
+                                </div>
+                            </form>
                         </div>
                     </div>
+
+
                     <div class="col-span-1 hidden md:block shadow-sm p-1 mt-5 md:mt-0 bg-white rounded">
                         <!-- image offer -->
                         <img class="w-full h-40 rounded" src="./images/rightSidebar/offer.png" alt="offer image"
                             loading="lazy">
+                            <!-- nav tabs -->
                     </div>
                 </div>
             </main>

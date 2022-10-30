@@ -37,6 +37,21 @@ body{
     scrollbar-width: none !important;  
 }
 
-
-/* choose color with padding style */
+/* change iamge in page color extraction */
+.avatar-upload .avatar-edit input {
+    display: none;
+}
+.avatar-upload .avatar-preview {
+    width: 250px;
+    height: 250px;
+    border-radius: 10px;
+}
+.avatar-upload .avatar-preview > div {
+    width: 250px;
+    height: 250px;
+    border-radius: 10px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
 
