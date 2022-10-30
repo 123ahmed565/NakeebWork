@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Description" content="Enter your description here" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Palettes Finder</title>
+</head>
+
+<body>
+
+
+    <!-- start home page -->
+    <div class="flex h-screen overflow-y-hidden bg-white" x-data="setup()"
+        x-init="$refs.loading.classList.add('hidden')">
+        <!-- Loading screen -->
+        <div x-ref="loading"
+        class="fixed inset-0 z-50 flex items-center justify-center text-white bg-white bg-opacity-50"
+        style="backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px)">
+        <img class="w-40 object-contain" loading="lazy"src="./images/logo/logo.png" alt="image logo">
+        </div> 
+
+        <!-- Sidebar backdrop -->
+        <div x-show.in.out.opacity="isSidebarOpen" class="fixed inset-0 z-10 bg-black bg-opacity-20 lg:hidden"
+            style="backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px)"></div>
+
+        <!-- Sidebar -->
+        <aside x-cloak x-transition:enter="transition transform duration-300"
+            x-transition:enter-start="-translate-x-full opacity-30  ease-in"
+            x-transition:enter-end="translate-x-0 opacity-100 ease-out"
+            x-transition:leave="transition transform duration-300"
+            x-transition:leave-start="translate-x-0 opacity-100 ease-out"
+            x-transition:leave-end="-translate-x-full opacity-0 ease-in"
+            class="fixed inset-y-0 z-20 flex flex-col flex-shrink-0 w-64 max-h-screen overflow-hidden transition-all transform bg-white shadow-lg lg:z-auto lg:static lg:shadow-none"
+            :class="{'-translate-x-full lg:translate-x-0 lg:w-20': !isSidebarOpen}">
+            <aside x-cloak x-transition:enter="transition transform duration-300"
+                x-transition:enter-start="-translate-x-full opacity-30  ease-in"
+                x-transition:enter-end="translate-x-0 opacity-100 ease-out"
+                x-transition:leave="transition transform duration-300"
+                x-transition:leave-start="translate-x-0 opacity-100 ease-out"
+                x-transition:leave-end="-translate-x-full opacity-0 ease-in"
+                class="fixed inset-y-0 z-20 flex flex-col flex-shrink-0 w-64 max-h-screen overflow-hidden transition-all transform bg-white shadow-lg lg:z-auto lg:static lg:shadow-none"
+                :class="{'-translate-x-full lg:translate-x-0 lg:w-20': !isSidebarOpen}">
+                <!-- sidebar header -->
+                <div class="flex items-center justify-between flex-shrink-0 p-2 cursor-pointer"
+                    :class="{'lg:justify-center': !isSidebarOpen}">
+                    <!-- <span
+                class="w-full flex justify-center items-center space-x-2 p-2 text-xl font-semibold leading-8 tracking-wider uppercase whitespace-nowrap bg-gray-100 rounded shadow hover:drop-shadow-xl transition duration-150 ease-in-out">
+                <span :class="{'lg:hidden': !isSidebarOpen}">Category</span>
+            </span> -->
+                    <button @click="toggleSidbarMenu()" class="p-2 rounded-md lg:hidden">
+                        <svg class="w-6 h-6 tetext-[#a7aab9]xmlns=" http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <!-- Sidebar links -->
+                <nav class="flex-1 overflow-hidden hover:overflow-y-auto">
+                    <ul class="p-2 overflow-hidden">
+                        <li>
+                            <img class="w-12 h-12 object-contain mx-auto" src="./images/logo/logo.png" alt="image logo"
+                                loading="lazy">
+                        </li>
+                        <!-- font icon -->
+                        <li class="mt-3">
+                            <a href="./index.html"
+                                class="flex justify-center items-center p-2 space-x-2 rounded-md hover:text-[#ff440f] hover:drop-shadow transition"
+                                :class="{'justify-center': !isSidebarOpen}">
+                                <img class="w-8 h-6" src="./images/leftSidebar/font.png" alt="font image"
+                                    loading="lazy">
+                                <span class="capitalize font-semibold"
+                                    :class="{ 'lg:hidden': !isSidebarOpen }">Font</span>
+                            </a>
+                        </li>
+
+                        <!-- icon icon -->
+                        <li class="mt-3">
+                            <a href="./icons.html"
+                                class="flex justify-center items-center p-2 space-x-2 rounded-md hover:text-[#ff440f] hover:drop-shadow transition"
+                                :class="{'justify-center': !isSidebarOpen}">
+                                <img class="w-6 h-6" src="./images/leftSidebar/icon.png" alt="icon image"
+                                    loading="lazy">
+                                <span class="capitalize font-semibold"
+                                    :class="{ 'lg:hidden': !isSidebarOpen }">icon</span>
+                            </a>
+                        </li>
+
+                        <!-- color icon -->
+                        <li class="mt-3">
+                            <a href="./colorPalette.html"
+                                class="flex justify-center items-center p-2 space-x-2 rounded-md hover:text-[#ff440f] hover:drop-shadow transition"
+                                :class="{'justify-center': !isSidebarOpen}">
+                                <img class="w-6 h-6" src="./images/leftSidebar/color.png" alt="color image"
+                                    loading="lazy">
+                                <span class="capitalize font-semibold"
+                                    :class="{ 'lg:hidden': !isSidebarOpen }">color</span>
+                            </a>
+                        </li>
+
+                        <!-- gradiants icon -->
+                        <li class="mt-3">
+                            <a href="./gradiants.html"
+                                class="flex justify-center items-center p-2 space-x-2 rounded-md hover:text-[#ff440f] hover:drop-shadow transition"
+                                :class="{'justify-center': !isSidebarOpen}">
+                                <img class="w-6 h-6" src="./images/leftSidebar/gradiants.png" alt="gradiants image"
+                                    loading="lazy">
+                                <span class="capitalize font-semibold"
+                                    :class="{ 'lg:hidden': !isSidebarOpen }">gradiants</span>
+                            </a>
+                        </li>
+
+                        <li class="mt-3 w-16">
+                            <p class="w-12 border border-gray-100 mx-auto"></p>
+                        </li>
+
+                        <!-- color information icon -->
+                        <li class="mt-3">
+                            <a href="./colorInformation.html"
+                                class="flex justify-center items-center p-2 space-x-2 rounded-md hover:text-[#ff440f] hover:drop-shadow transition"
+                                :class="{'justify-center': !isSidebarOpen}">
+                                <img class="w-6 h-6" src="./images/leftSidebar/color-info.png"
+                                    alt="color information image" loading="lazy">
+                                <span class="capitalize font-semibold" :class="{ 'lg:hidden': !isSidebarOpen }">color
+                                    information</span>
+                            </a>
+                        </li>
+
+                        <!-- color extraction icon -->
+                        <li class="mt-3">
+                            <a href="#"
+                                class="flex justify-center items-center p-2 space-x-2 rounded-md hover:text-[#ff440f] hover:drop-shadow transition"
+                                :class="{'justify-center': !isSidebarOpen}">
+                                <img class="w-6 h-6" src="./images/leftSidebar/color-extraction.png"
+                                    alt="color extraction image" loading="lazy">
+                                <span class="capitalize font-semibold" :class="{ 'lg:hidden': !isSidebarOpen }">color
+                                    extraction</span>
+                            </a>
+                        </li>
+
+                        <!-- palattes finder icon -->
+                        <li class="mt-3">
+                            <a href="./palettesFinder.html"
+                                class="flex justify-center items-center p-2 space-x-2 rounded-md hover:text-[#ff440f] hover:drop-shadow transition"
+                                :class="{'justify-center': !isSidebarOpen}">
+                                <img class="w-6 h-6" src="./images/leftSidebar/palattes-finder.png"
+                                    alt="palattes finder image" loading="lazy">
+                                <span class="capitalize font-semibold" :class="{ 'lg:hidden': !isSidebarOpen }">palattes
+                                    finder</span>
+                            </a>
+                        </li>
+
+                        <!-- copyright icon -->
+                        <li class="mt-3">
+                            <a href="./copyRights.html"
+                                class="flex justify-center items-center p-2 space-x-2 rounded-md hover:text-[#ff440f] hover:drop-shadow transition"
+                                :class="{'justify-center': !isSidebarOpen}">
+                                <img class="w-6 h-6" src="./images/leftSidebar/copyright.png" alt="copyright image"
+                                    loading="lazy">
+                                <span class="capitalize font-semibold"
+                                    :class="{ 'lg:hidden': !isSidebarOpen }">copyright</span>
+                            </a>
+                        </li>
+                        <!-- Sidebar Links... -->
+                    </ul>
+                </nav>
+            </aside>
+        </aside>
+
+        <!-- body Content -->
+        <div class="flex flex-col flex-1 h-full overflow-hidden bg-[#F4F7FC]">
+            <!-- Navbar -->
+            <header class="bg-white flex-shrink-0 py-2">
+                <div class="flex items-center justify-between p-1">
+                    <!-- Navbar left pc only -->
+                    <div class="hidden md:flex items-center lg:space-x-3">
+                        <!-- <button @click="toggleSidbarMenu()" class="p-2 rounded-md focus:outline-none">
+                            <svg class="w-4 h-4 text-gray-600"
+                                :class="{'transform transition-transform -rotate-180': isSidebarOpen}"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+                            </svg>
+                        </button> -->
+                        <!-- <img class="ml-3" src="" alt="image logo" loading="lazy"> -->
+                    </div>
+
+                    <!-- Navbar left mobile only -->
+                    <div class="block md:hidden flex items-center lg:space-x-3">
+                        <img @click="toggleSidbarMenu()" class="w-8 h-6 object-contain p-1"
+                            src="./images/header/menu.png" alt="menu image" loading="lazy">
+                    </div>
+
+                    <!-- Mobile search box -->
+                    <div x-show.transition="isSearchBoxOpen" class="fixed inset-0 z-10 bg-black bg-opacity-20"
+                        style="backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px)">
+                        <div @click.away="isSearchBoxOpen = false"
+                            class="absolute inset-x-0 flex items-center justify-between p-2 bg-white shadow-md">
+                            <div class="flex items-center flex-1 px-2 space-x-2">
+                                <!-- search icon -->
+                                <span>
+                                    <svg class="w-6 h-6 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                    </svg>
+                                </span>
+                                <input type="text" placeholder="Search"
+                                    class="w-full px-4 py-3 text-gray-600 rounded-md focus:bg-gray-100 focus:outline-none" />
+                            </div>
+                            <!-- close button -->
+                            <button @click="isSearchBoxOpen = false" class="flex-shrink-0 p-4 rounded-md">
+                                <svg class="w-4 h-4 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- title pc only -->
+                    <!-- <h1 class="font-semibold text-lg capitalize hidden lg:block">site name</h1> -->
+
+                    <!-- title mobile only -->
+                    <!-- <h1 class="font-bold text-xl capitalize md:hidden block">Main page</h1> -->
+
+                    <!-- Desktop search & buttons -->
+                    <div class="relative md:flex hidden px-2 space-x-2 md:flex-1">
+                        <div class="relative mt-1 rounded-md">
+                            <div class="absolute inset-y-0 left-0 flex items-center">
+                            <!-- <label for="currency" class="sr-only">Currency</label> -->
+                            <select class="h-full rounded-md border-transparent bg-transparent py-0 pl-2 pr-7 text-gray-500 sm:text-sm">
+                                <option>font</option>
+                                <option>font</option>
+                                <option>font</option>
+                            </select>
+                            </div>
+                        <input type="text" class="w-[46rem] h-11 pl-28 px-4 py-3 bg-[#] border border border-gray-300 rounded-full font-bold capitalize text-gray-500 text-xs md:py-2 md:flex-1 focus:outline-none focus:text-black" placeholder="search here">
+                        </div>
+                        <!-- butons -->
+                        <div class="flex items-center space-x-3">
+                            <!-- buttons General -->
+                            <a href="./saved.html"
+                                class="flex items-center bg-[#F5F7FC] rounded-full pl-4 pr-4 pt-2 pb-2 capitalize ml-2 font-semibold text-gray-700 hover:text-[#4285f4] transition duration-150 ease-out">
+                                <!-- <img class="w-8 h-7" src="./images/header/heart.png" alt="save image" loading="lazy"> -->
+                                <i class="fas fa-heart mr-2"></i>
+                                saved
+                            </a>
+                            <a href="./contactUs.html"
+                                class="flex items-center bg-[#F5F7FC] rounded-full pl-4 pr-4 pt-2 pb-2 capitalize ml-2 font-semibold text-gray-700 hover:text-[#4285f4] transition duration-150 ease-out">
+                                <!-- <img class="w-8 h-7" src="./images/header/contact.png" alt="contact image" loading="lazy"> -->
+                                <i class="fas fa-envelope mr-2"></i>
+                                contact
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Navbar right pc only -->
+                    <div class="hidden md:flex relative flex items-center space-x-3">
+
+                    </div>
+
+                    <!-- Navbar right mobile only -->
+                    <div class="block md:hidden relative flex items-center">
+                    </div>
+                </div>
+            </header>
+            <!-- Main content -->
+            <main class="flex-1 max-h-full p-2 overflow-hidden overflow-y-scroll">
+                <!-- grid content -->
+                <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-5 space-x-2">
+
+                    <div class="col-span-4 shadow-lg">
+                        <!-- catgeory -->
+                        <div class="p-5 bg-white rounded">
+                            <div class="flex items-center justify-center bg-[#F2F6FF] w-80 h-52 mx-auto">
+                                
+                            </div>
+                            <!-- data option for color -->
+                            <form class="flex items-center justify-center space-x-4 mt-3">
+                                <input type="text" class="capitalize w-24 h-8 text-sm font-semibold text-center bg-[#f4f7fc] rounded focus:outline-none" placeholder="add HEXCode">
+                                <!-- dropdown Hex -->
+                                <div class="Hex">
+                                    <!-- start dropdown modal brand  -->
+                                    <div x-data="{
+                                        open: false,
+                                        toggle() {
+                                            if (this.open) {
+                                                return this.close()
+                                            }
+                                    
+                                            this.open = true
+                                        },
+                                        close(focusAfter) {
+                                            this.open = false
+                                            focusAfter && focusAfter.focus()
+                                        }
+                                    }" x-on:keydown.escape.prevent.stop="close($refs.button)"
+                                        x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
+                                        x-id="['dropdown-button']" class="relative">
+                                        <!-- Button -->
+                                        <button x-ref="button" x-on:click="toggle()" :aria-expanded="open"
+                                            :aria-controls="$id('dropdown-button')" type="button"
+                                            class="w-14 h-8 flex items-center border-0 capitalize text-gray-700 font-semibold bg-[#F5F7FC] rounded pl-3 pr-5 pt-2 pb-2">
+                                            <p class="uppercase font-bold">hex</p>
+                                        </button>
+
+                                        <!-- Panel -->
+                                        <div x-ref="panel" x-show="open" x-transition.origin.top.left
+                                            x-on:click.outside="close($refs.button)" :id="$id('dropdown-button')"
+                                            style="display: none;" class="absolute w-full mt-2 z-20 bg-white rounded">
+                                            <div class="whitespace-nowrap">
+                                                <a href="#"
+                                                    class="flex items-center w-full text-left py-2 text-sm hover:bg-gray-100">
+                                                    <p class="ml-2 capitalize font-bold">rgb</p>
+                                                </a>
+
+                                                <a href="#"
+                                                    class="flex items-center w-full text-left py-2 text-sm hover:bg-gray-100">
+                                                    <p class="ml-2 capitalize font-bold">hsl</p>
+                                                </a>
+
+                                                <a href="#"
+                                                    class="flex items-center w-full text-left py-2 text-sm hover:bg-gray-100">
+                                                    <p class="ml-2 capitalize font-bold">hsb</p>
+                                                </a>
+
+                                                <a href="#"
+                                                    class="flex items-center w-full text-left py-2 text-sm hover:bg-gray-100">
+                                                    <p class="ml-2 capitalize font-bold">cmyk</p>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- color picker -->
+                                <div class="colorPicker">
+                                    <input class="w-8" type="color" id="favcolor" name="favcolor" value="#000">
+                                </div>
+                                <!-- botton run -->
+                                <input type="submit" value="Run" class="cursor-pointer capitalize w-24 h-8 text-sm font-semibold text-center bg-[#f4f7fc] rounded">
+                            </form>
+                            <!-- color palette -->
+                            <div class="flex flex-wrap scrollHide overflow-y-auto md:h-[27rem] bg-white mt-2">
+                                <!-- single color palette -->
+                                <div class="relative block p-2 mt-2 cursor-pointer transition duration-150 ease-out">
+                                    <div class="colorPalette">
+                                        <div class="flex items-center">
+                                            <p class="group w-10 h-28 shadow-xl bg-[#03071E] rounded-l-lg">
+                                                <a class="hidden absolute top-14 group-hover:block text-white text-sm font-semibold">fb800</a>
+                                            </p>
+                                            <p class="group w-10 h-28 shadow-xl bg-[#370617]">
+                                                <a class="hidden absolute top-14 group-hover:block text-white text-sm font-semibold">fb800</a>
+                                            </p>
+                                            <p class="group w-10 h-28 shadow-xl bg-[#6a040f]">
+                                                <a class="hidden absolute top-14 group-hover:block text-white text-sm font-semibold">fb800</a>
+                                            </p>
+                                            <p class="group w-10 h-28 shadow-xl bg-[#9d0208]">
+                                                <a class="hidden absolute top-14 group-hover:block text-white text-sm font-semibold">fb800</a>
+                                            </p>
+                                            <p class="group w-10 h-28 shadow-xl bg-[#d00000]">
+                                                <a class="hidden absolute top-14 group-hover:block text-white text-sm font-semibold">fb800</a>
+                                            </p>
+                                            <p class="group w-10 h-28 shadow-xl bg-[#dc2f02]">
+                                                <a class="hidden absolute top-14 group-hover:block text-white text-sm font-semibold">fb800</a>
+                                            </p>
+                                            <p class="group w-10 h-28 shadow-xl bg-[#e85d04]">
+                                                <a class="hidden absolute top-14 group-hover:block text-white text-sm font-semibold">fb800</a>
+                                            </p>
+                                            <p class="group w-10 h-28 shadow-xl bg-[#f48c06]">
+                                                <a class="hidden absolute top-14 group-hover:block text-white text-sm font-semibold">fb800</a>
+                                            </p>
+                                            <p class="group w-10 h-28 shadow-xl bg-[#faa307]">
+                                                <a class="hidden absolute top-14 group-hover:block text-white text-sm font-semibold">fb800</a>
+                                            </p>
+                                            <p class="group w-10 h-28 shadow-xl bg-[#ffba08] rounded-r-lg">
+                                                <a class="hidden absolute top-14 group-hover:block text-white text-sm font-semibold">fb800</a>
+                                            </p>
+                                        </div>
+                                        <!-- option -->
+                                        <div class="flex items-center justify-between">
+                                            <div class="flex items-center space-x-1 mt-1 px-2 mr-0 ml-auto">
+                                                <i class="far fa-heart text-gray-400"></i>
+                                                <p class="text-sm text-gray-400">50.6k</p>
+                                                <!-- start dropdown modal gradiants  -->
+                                                <div x-data="{
+                                                    open: false,
+                                                    toggle() {
+                                                        if (this.open) {
+                                                            return this.close()
+                                                        }
+                                                
+                                                        this.open = true
+                                                    },
+                                                    close(focusAfter) {
+                                                        this.open = false
+                                                        focusAfter && focusAfter.focus()
+                                                    }
+                                                }" x-on:keydown.escape.prevent.stop="close($refs.button)"
+                                                                x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
+                                                                x-id="['dropdown-button']" class="relative ml-5">
+                                                                <!-- Button -->
+                                                                <button x-ref="button" x-on:click="toggle()" :aria-expanded="open"
+                                                                    :aria-controls="$id('dropdown-button')" type="button">
+                                                                    <i class="fa fa-ellipsis-h pl-2 text-gray-400"></i>
+                                                                </button>
+        
+                                                                <!-- Panel -->
+                                                                <div x-ref="panel" x-show="open" x-transition.origin.top.left
+                                                                    x-on:click.outside="close($refs.button)" :id="$id('dropdown-button')"
+                                                                    style="display: none;" class="absolute w-full mt-2 z-20 bg-white rounded right-28">
+                                                                    <div class="bg-gray-100 w-56 rounded">
+                                                                        <a href="./colorPaletteDetails.html"
+                                                                        class="flex items-center w-full px-2 py-2 text-left text-md font-semibold hover:bg-white transition duration-150 ease-out">
+                                                                        <p class="ml-2 capitalize text-sm text-bold text-gray-800">
+                                                                            <i class="fas fa-external-link-square-alt mr-1"></i>
+                                                                            open palette</p>
+                                                                        </a>
+                                                                        <!--start modal popup-->
+                                                                        <div x-data="{qopen:false}" @keydown.window.escape.stop="qopen = false" @click.away="qopen = false"
+                                                                        class="flex px-2 py-2 text-left text-md font-semibold hover:bg-white transition duration-150 ease-out">
+                                                                        <!-- button open modal -->
+                                                                        <button @click="qopen = !qopen"
+                                                                        class="">
+                                                                        <p class="ml-2 capitalize text-sm text-bold text-gray-800">
+                                                                            <i class="fa fa-eye mr-1"></i>
+                                                                            quick veiw</p>
+                                                                        </button>
+                                                                        <!-----END button----------->
+        
+                                                                        <section x-show="qopen" x-transition:enter="ease-out duration-100"
+                                                                        x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                                                        x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="ease-in duration-200"
+                                                                        x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                                                                        x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
+        
+                                                                        <div class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog"
+                                                                        aria-modal="true">
+                                                                        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        
+                                                                        <!---over BG---->
+                                                                        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"
+                                                                            @click="qopen = false">
+                                                                        </div>
+                                                                        <!-- center tricj-->
+                                                                        <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+                                                                        <!---END over BG---->
+        
+        
+                                                                        <!-- Question Box -->
+                                                                        <div class="relative inline-block bg-white rounded-lg p-2 shadow-xl transform transition-all my-8 align-middle w-full sm:w-1/3">
+                                                                            <!-- title modal popup -->
+                                                                            <div class="flex items-center justify-between bg-white rounded-xl">
+                                                                                <svg @click="qopen = !qopen" xmlns="http://www.w3.org/2000/svg" width="25"
+                                                                                height="25" fill="black"
+                                                                                class="bi bi-x cursor-pointer w-6 rounded-full" viewBox="0 0 16 16">
+                                                                                <path
+                                                                                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                                                                                </svg>
+                                                                                <h2 class="text-md font-semibold capitalize text-center" :id="$id('modal-title')">quick view</h2>
+                                                                                <!-- start dropdown modal brand  -->
+                                                                                <div x-data="{
+                                                                                    open: false,
+                                                                                    toggle() {
+                                                                                        if (this.open) {
+                                                                                            return this.close()
+                                                                                        }
+                                                                                
+                                                                                        this.open = true
+                                                                                    },
+                                                                                    close(focusAfter) {
+                                                                                        this.open = false
+                                                                                        focusAfter && focusAfter.focus()
+                                                                                    }
+                                                                                }" x-on:keydown.escape.prevent.stop="close($refs.button)"
+                                                                                                x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
+                                                                                                x-id="['dropdown-button']" class="relative ml-5">
+                                                                                                <!-- Button -->
+                                                                                                <button x-ref="button" x-on:click="toggle()" :aria-expanded="open"
+                                                                                                    :aria-controls="$id('dropdown-button')" type="button" class="flex items-center justify-between border-0 capitalize text-gray-700 font-semibold rounded pl-3 pr-5 pt-2 pb-2">
+                                                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="gray" class="bi bi-three-dots mx-auto" viewBox="0 0 16 16">
+                                                                                                        <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                                                                                                    </svg>
+                                                                                                </button>
+        
+                                                                                                <!-- Panel -->
+                                                                                                <div x-ref="panel" x-show="open" x-transition.origin.top.left
+                                                                                                    x-on:click.outside="close($refs.button)" :id="$id('dropdown-button')"
+                                                                                                    style="display: none;" class="absolute w-full mt-2 z-20 bg-white rounded right-28">
+                                                                                                    <div class="bg-gray-100 w-52 rounded">
+                                                                                                        <a href="#"
+                                                                                                            class="flex items-center w-full px-2 py-2 text-left text-md font-semibold hover:bg-white transition duration-150 ease-out">
+                                                                                                            <p class="ml-2 capitalize text-bold text-gray-800">
+                                                                                                                <i class="far fa-heart mr-1"></i>
+                                                                                                                save palette</p>
+                                                                                                        </a>
+        
+                                                                                                        <a href="#"
+                                                                                                            class="flex items-center w-full px-2 py-2 text-left text-md font-semibold hover:bg-white transition duration-150 ease-out">
+                                                                                                            <p class="ml-2 capitalize text-bold text-gray-800">
+                                                                                                                <i class="far fa-copy mr-1"></i>
+                                                                                                                copy hwb</p>
+                                                                                                        </a>
+        
+                                                                                                        <a href="#"
+                                                                                                        class="flex items-center w-full px-2 py-2 text-left text-md font-semibold hover:bg-white transition duration-150 ease-out">
+                                                                                                        <p class="ml-2 capitalize text-bold text-gray-800">
+                                                                                                            <i class="fab fa-css3 mr-1"></i>
+                                                                                                            copy css</p>
+                                                                                                        </a>
+        
+                                                                                                                                                                                                        <a href="#"
+                                                                                                        class="flex items-center w-full px-2 py-2 text-left text-md font-semibold hover:bg-white transition duration-150 ease-out">
+                                                                                                        <p class="ml-2 capitalize text-bold text-gray-800">
+                                                                                                            <i class="fa fa-download mr-1"></i>
+                                                                                                            download gradient</p>
+                                                                                                        </a>
+        
+                                                                                                        <a href="#"
+                                                                                                            class="flex items-center w-full px-2 py-2 text-left text-md font-semibold hover:bg-white transition duration-150 ease-out">
+                                                                                                            <p class="ml-2 capitalize text-bold text-gray-800">
+                                                                                                                <i class="fa fa-list mr-1"></i>
+                                                                                                                explore similar</p>
+                                                                                                        </a>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!-- Content -->
+                                                                            <div class="block mt-10">
+                                                                                <div class="bg-gradient-to-r from-[#be9dd9] to-[#fbc2eb] w-full h-56 rounded-xl hover:shadow-md"></div>
+                                                                                <div class="flex justify-center space-x-2 mt-2">
+                                                                                    <p class="w-8 h-8 rounded-full bg-[#be9dd9]"></p>
+                                                                                    <p class="w-8 h-8 rounded-full bg-[#fbc2eb]"></p>
+                                                                                </div>
+                                                                                <div class="flex justify-center items-center mt-10 space-x-4">
+                                                                                    <button class="bg-[#f4f7fc] pl-3 pr-3 pt-2 pb-2 rounded uppercase text-xl font-semibold text-[#a7aab9]">hex</button>
+                                                                                    <button class="bg-[#f4f7fc] pl-3 pr-3 pt-2 pb-2 rounded uppercase text-xl font-semibold text-[#a7aab9]">hsb</button>
+                                                                                    <button class="bg-[#f4f7fc] pl-3 pr-3 pt-2 pb-2 rounded uppercase text-xl font-semibold text-[#a7aab9]">hsl</button>
+                                                                                    <button class="bg-[#f4f7fc] pl-3 pr-3 pt-2 pb-2 rounded uppercase text-xl font-semibold text-[#a7aab9]">rgp</button>
+                                                                                    <button class="bg-[#f4f7fc] pl-3 pr-3 pt-2 pb-2 rounded uppercase text-xl font-semibold text-[#a7aab9]">cmyk</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <!--END Question Box -->
+        
+                                                                        </div>
+                                                                        </div>
+                                                                        </section>
+        
+                                                                        </div>
+                                                                        <!-----END modal popup----------->
+        
+                                                                        <a href="#"
+                                                                        class="flex items-center w-full px-2 py-2 text-left text-md font-semibold hover:bg-white transition duration-150 ease-out">
+                                                                        <p class="ml-2 capitalize text-sm text-bold text-gray-800">
+                                                                            <i class="fa fa-palette mr-1"></i>
+                                                                            open in the generator</p>
+                                                                        </a>
+        
+                                                                        <a href="#"
+                                                                            class="flex items-center w-full px-2 py-2 text-left text-md font-semibold hover:bg-white transition duration-150 ease-out">
+                                                                            <p class="ml-2 capitalize text-sm text-bold text-gray-800">
+                                                                                <i class="fa fa-download mr-1"></i>
+                                                                                download image</p>
+                                                                        </a>
+        
+                                                                        <a href="#"
+                                                                            class="flex items-center w-full px-2 py-2 text-left text-md font-semibold hover:bg-white transition duration-150 ease-out">
+                                                                            <p class="ml-2 capitalize text-sm text-bold text-gray-800">
+                                                                                <i class="fa fa-list mr-1"></i>
+                                                                                explore similar</p>
+                                                                        </a>
+        
+                                                                        <a href="#"
+                                                                        class="flex items-center w-full px-2 py-2 text-left text-md font-semibold hover:bg-white transition duration-150 ease-out">
+                                                                        <p class="ml-2 capitalize text-sm text-bold text-gray-800">
+                                                                            <i class="far fa-heart mr-1"></i>
+                                                                            save palette</p>
+                                                                    </a>
+                                                                    </div>
+                                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- single color palette -->
+                                <div class="relative block p-2 mt-2 cursor-pointer transition duration-150 ease-out">
+                                    <div class="colorPalette">
+                                        <div class="flex items-center">
+                                            <p class="group w-10 h-28 shadow-xl bg-[#03071E] rounded-l-lg">
+                                                <a class="hidden absolute top-14 group-hover:block text-white text-sm font-semibold">fb800</a>
+                                            </p>
+                                            <p class="group w-10 h-28 shadow-xl bg-[#370617]">
+                                                <a class="hidden absolute top-14 group-hover:block text-white text-sm font-semibold">fb800</a>
+                                            </p>
+                                            <p class="group w-10 h-28 shadow-xl bg-[#6a040f]">
+                                                <a class="hidden absolute top-14 group-hover:block text-white text-sm font-semibold">fb800</a>
+                                            </p>
+                                            <p class="group w-10 h-28 shadow-xl bg-[#9d0208]">
+                                                <a class="hidden absolute top-14 group-hover:block text-white text-sm font-semibold">fb800</a>
+                                            </p>
+                                            <p class="group w-10 h-28 shadow-xl bg-[#d00000]">
+                                                <a class="hidden absolute top-14 group-hover:block text-white text-sm font-semibold">fb800</a>
+                                            </p>
+                                            <p class="group w-10 h-28 shadow-xl bg-[#dc2f02]">
+                                                <a class="hidden absolute top-14 group-hover:block text-white text-sm font-semibold">fb800</a>
+                                            </p>
+                                            <p class="group w-10 h-28 shadow-xl bg-[#e85d04]">
+                                                <a class="hidden absolute top-14 group-hover:block text-white text-sm font-semibold">fb800</a>
+                                            </p>
+                                            <p class="group w-10 h-28 shadow-xl bg-[#f48c06]">
+                                                <a class="hidden absolute top-14 group-hover:block text-white text-sm font-semibold">fb800</a>
+                                            </p>
+                                            <p class="group w-10 h-28 shadow-xl bg-[#faa307]">
+                                                <a class="hidden absolute top-14 group-hover:block text-white text-sm font-semibold">fb800</a>
+                                            </p>
+                                            <p class="group w-10 h-28 shadow-xl bg-[#ffba08] rounded-r-lg">
+                                                <a class="hidden absolute top-14 group-hover:block text-white text-sm font-semibold">fb800</a>
+                                            </p>
+                                        </div>
+                                        <!-- option -->
+                                        <div class="flex items-center justify-between">
+                                            <div class="flex items-center space-x-1 mt-1 px-2 mr-0 ml-auto">
+                                                <i class="far fa-heart text-gray-400"></i>
+                                                <p class="text-sm text-gray-400">50.6k</p>
+                                                <!-- start dropdown modal gradiants  -->
+                                                <div x-data="{
+                                                    open: false,
+                                                    toggle() {
+                                                        if (this.open) {
+                                                            return this.close()
+                                                        }
+                                                
+                                                        this.open = true
+                                                    },
+                                                    close(focusAfter) {
+                                                        this.open = false
+                                                        focusAfter && focusAfter.focus()
+                                                    }
+                                                }" x-on:keydown.escape.prevent.stop="close($refs.button)"
+                                                                x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
+                                                                x-id="['dropdown-button']" class="relative ml-5">
+                                                                <!-- Button -->
+                                                                <button x-ref="button" x-on:click="toggle()" :aria-expanded="open"
+                                                                    :aria-controls="$id('dropdown-button')" type="button">
+                                                                    <i class="fa fa-ellipsis-h pl-2 text-gray-400"></i>
+                                                                </button>
+        
+                                                                <!-- Panel -->
+                                                                <div x-ref="panel" x-show="open" x-transition.origin.top.left
+                                                                    x-on:click.outside="close($refs.button)" :id="$id('dropdown-button')"
+                                                                    style="display: none;" class="absolute w-full mt-2 z-20 bg-white rounded right-28">
+                                                                    <div class="bg-gray-100 w-56 rounded">
+        
+                                                                        <!--start modal popup-->
+                                                                        <div x-data="{qopen:false}" @keydown.window.escape.stop="qopen = false" @click.away="qopen = false"
+                                                                        class="flex px-2 py-2 text-left text-md font-semibold hover:bg-white transition duration-150 ease-out">
+                                                                        <!-- button open modal -->
+                                                                        <button @click="qopen = !qopen"
+                                                                        class="">
+                                                                        <p class="ml-2 capitalize text-sm text-bold text-gray-800">
+                                                                            <i class="fa fa-eye mr-1"></i>
+                                                                            quick veiw</p>
+                                                                        </button>
+                                                                        <!-----END button----------->
+        
+                                                                        <section x-show="qopen" x-transition:enter="ease-out duration-100"
+                                                                        x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                                                        x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="ease-in duration-200"
+                                                                        x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                                                                        x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
+        
+                                                                        <div class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog"
+                                                                        aria-modal="true">
+                                                                        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        
+                                                                        <!---over BG---->
+                                                                        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"
+                                                                            @click="qopen = false">
+                                                                        </div>
+                                                                        <!-- center tricj-->
+                                                                        <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+                                                                        <!---END over BG---->
+        
+        
+                                                                        <!-- Question Box -->
+                                                                        <div class="relative inline-block bg-white rounded-lg p-2 shadow-xl transform transition-all my-8 align-middle w-full sm:w-1/3">
+                                                                            <!-- title modal popup -->
+                                                                            <div class="flex items-center justify-between bg-white rounded-xl">
+                                                                                <svg @click="qopen = !qopen" xmlns="http://www.w3.org/2000/svg" width="25"
+                                                                                height="25" fill="black"
+                                                                                class="bi bi-x cursor-pointer w-6 rounded-full" viewBox="0 0 16 16">
+                                                                                <path
+                                                                                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                                                                                </svg>
+                                                                                <h2 class="text-md font-semibold capitalize text-center" :id="$id('modal-title')">quick view</h2>
+                                                                                <!-- start dropdown modal brand  -->
+                                                                                <div x-data="{
+                                                                                    open: false,
+                                                                                    toggle() {
+                                                                                        if (this.open) {
+                                                                                            return this.close()
+                                                                                        }
+                                                                                
+                                                                                        this.open = true
+                                                                                    },
+                                                                                    close(focusAfter) {
+                                                                                        this.open = false
+                                                                                        focusAfter && focusAfter.focus()
+                                                                                    }
+                                                                                }" x-on:keydown.escape.prevent.stop="close($refs.button)"
+                                                                                                x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
+                                                                                                x-id="['dropdown-button']" class="relative ml-5">
+                                                                                                <!-- Button -->
+                                                                                                <button x-ref="button" x-on:click="toggle()" :aria-expanded="open"
+                                                                                                    :aria-controls="$id('dropdown-button')" type="button" class="flex items-center justify-between border-0 capitalize text-gray-700 font-semibold rounded pl-3 pr-5 pt-2 pb-2">
+                                                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="gray" class="bi bi-three-dots mx-auto" viewBox="0 0 16 16">
+                                                                                                        <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                                                                                                    </svg>
+                                                                                                </button>
+        
+                                                                                                <!-- Panel -->
+                                                                                                <div x-ref="panel" x-show="open" x-transition.origin.top.left
+                                                                                                    x-on:click.outside="close($refs.button)" :id="$id('dropdown-button')"
+                                                                                                    style="display: none;" class="absolute w-full mt-2 z-20 bg-white rounded right-28">
+                                                                                                    <div class="bg-gray-100 w-52 rounded">
+                                                                                                        <a href="#"
+                                                                                                            class="flex items-center w-full px-2 py-2 text-left text-md font-semibold hover:bg-white transition duration-150 ease-out">
+                                                                                                            <p class="ml-2 capitalize text-bold text-gray-800">
+                                                                                                                <i class="far fa-heart mr-1"></i>
+                                                                                                                save palette</p>
+                                                                                                        </a>
+        
+                                                                                                        <a href="#"
+                                                                                                            class="flex items-center w-full px-2 py-2 text-left text-md font-semibold hover:bg-white transition duration-150 ease-out">
+                                                                                                            <p class="ml-2 capitalize text-bold text-gray-800">
+                                                                                                                <i class="far fa-copy mr-1"></i>
+                                                                                                                copy hwb</p>
+                                                                                                        </a>
+        
+                                                                                                        <a href="#"
+                                                                                                        class="flex items-center w-full px-2 py-2 text-left text-md font-semibold hover:bg-white transition duration-150 ease-out">
+                                                                                                        <p class="ml-2 capitalize text-bold text-gray-800">
+                                                                                                            <i class="fab fa-css3 mr-1"></i>
+                                                                                                            copy css</p>
+                                                                                                        </a>
+        
+                                                                                                                                                                                                        <a href="#"
+                                                                                                        class="flex items-center w-full px-2 py-2 text-left text-md font-semibold hover:bg-white transition duration-150 ease-out">
+                                                                                                        <p class="ml-2 capitalize text-bold text-gray-800">
+                                                                                                            <i class="fa fa-download mr-1"></i>
+                                                                                                            download gradient</p>
+                                                                                                        </a>
+        
+                                                                                                        <a href="#"
+                                                                                                            class="flex items-center w-full px-2 py-2 text-left text-md font-semibold hover:bg-white transition duration-150 ease-out">
+                                                                                                            <p class="ml-2 capitalize text-bold text-gray-800">
+                                                                                                                <i class="fa fa-list mr-1"></i>
+                                                                                                                explore similar</p>
+                                                                                                        </a>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!-- Content -->
+                                                                            <div class="block mt-10">
+                                                                                <div class="bg-gradient-to-r from-[#be9dd9] to-[#fbc2eb] w-full h-56 rounded-xl hover:shadow-md"></div>
+                                                                                <div class="flex justify-center space-x-2 mt-2">
+                                                                                    <p class="w-8 h-8 rounded-full bg-[#be9dd9]"></p>
+                                                                                    <p class="w-8 h-8 rounded-full bg-[#fbc2eb]"></p>
+                                                                                </div>
+                                                                                <div class="flex justify-center items-center mt-10 space-x-4">
+                                                                                    <button class="bg-[#f4f7fc] pl-3 pr-3 pt-2 pb-2 rounded uppercase text-xl font-semibold text-[#a7aab9]">hex</button>
+                                                                                    <button class="bg-[#f4f7fc] pl-3 pr-3 pt-2 pb-2 rounded uppercase text-xl font-semibold text-[#a7aab9]">hsb</button>
+                                                                                    <button class="bg-[#f4f7fc] pl-3 pr-3 pt-2 pb-2 rounded uppercase text-xl font-semibold text-[#a7aab9]">hsl</button>
+                                                                                    <button class="bg-[#f4f7fc] pl-3 pr-3 pt-2 pb-2 rounded uppercase text-xl font-semibold text-[#a7aab9]">rgp</button>
+                                                                                    <button class="bg-[#f4f7fc] pl-3 pr-3 pt-2 pb-2 rounded uppercase text-xl font-semibold text-[#a7aab9]">cmyk</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <!--END Question Box -->
+        
+                                                                        </div>
+                                                                        </div>
+                                                                        </section>
+        
+                                                                        </div>
+                                                                        <!-----END modal popup----------->
+        
+                                                                        <a href="#"
+                                                                        class="flex items-center w-full px-2 py-2 text-left text-md font-semibold hover:bg-white transition duration-150 ease-out">
+                                                                        <p class="ml-2 capitalize text-sm text-bold text-gray-800">
+                                                                            <i class="fa fa-palette mr-1"></i>
+                                                                            open in the generator</p>
+                                                                        </a>
+        
+                                                                        <a href="#"
+                                                                            class="flex items-center w-full px-2 py-2 text-left text-md font-semibold hover:bg-white transition duration-150 ease-out">
+                                                                            <p class="ml-2 capitalize text-sm text-bold text-gray-800">
+                                                                                <i class="fa fa-download mr-1"></i>
+                                                                                download image</p>
+                                                                        </a>
+        
+                                                                        <a href="#"
+                                                                            class="flex items-center w-full px-2 py-2 text-left text-md font-semibold hover:bg-white transition duration-150 ease-out">
+                                                                            <p class="ml-2 capitalize text-sm text-bold text-gray-800">
+                                                                                <i class="fa fa-list mr-1"></i>
+                                                                                explore similar</p>
+                                                                        </a>
+        
+                                                                        <a href="#"
+                                                                        class="flex items-center w-full px-2 py-2 text-left text-md font-semibold hover:bg-white transition duration-150 ease-out">
+                                                                        <p class="ml-2 capitalize text-sm text-bold text-gray-800">
+                                                                            <i class="far fa-heart mr-1"></i>
+                                                                            save palette</p>
+                                                                    </a>
+                                                                    </div>
+                                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-span-1 hidden md:block shadow-sm p-1 mt-5 md:mt-0 bg-white rounded">
+                        <!-- image offer -->
+                        <img class="w-full h-40 rounded" src="./images/rightSidebar/offer.png" alt="offer image"
+                            loading="lazy">
+                            <!-- nav tabs -->
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <!-- end home page -->
+
+
+
+
+
+    <!-- scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.js"></script>
+    <script src="./js/main.js"></script>
+
+    <!-- script addtional css i want  -->
+    <script>
+        tailwind.config = {
+            theme: {
+                container: {
+                    center: true,
+                    padding: {
+                        DEFAULT: '1rem',
+                        sm: '2rem',
+                        lg: '4rem',
+                        xl: '5rem',
+                        '2xl': '6rem',
+                    },
+                },
+                extend: {
+                    colors: {
+                        'mainColor': '#ff440f',
+                    },
+                    gap: {
+                        '11': '2.75rem',
+                    }
+                }
+            },
+            variants: {
+                extend: {
+                    display: ['group-hover'],
+                    visibility: ['group-hover'],
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
