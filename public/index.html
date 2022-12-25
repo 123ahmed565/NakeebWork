@@ -732,6 +732,36 @@
                         <!-- image offer -->
                         <img class="w-full h-40 rounded" src="./images/rightSidebar/offer.png" alt="offer image"
                             loading="lazy">
+                        
+
+                            <div x-data="{ tab: 1 }" x-cloak class="mt-3 antialiased">
+                                <div class="relative flex flex-col rounded-lg shadow-xs overflow-hidden">
+                                    <div class="flex space-x-2 bg-white">
+                                        <button type="button" class="focus:outline-none text-gray-400 hover:text-gray-500 py-2 px-1 border-t-2 text-sm tracking-wide font-medium border-transparent" x-on:click="tab = 1">
+                                            <img class="w-6 h-6 object-contain" src="./images/header/heart.png" alt="" loading="lazy">
+                                        </button>
+                                        <button type="button" class="focus:outline-none text-gray-400 hover:text-gray-500 py-2 px-1 border-t-2 text-sm tracking-wide font-medium border-transparent" x-on:click="tab = 2">
+                                            <img class="w-6 h-6 object-contain" src="./images/header/heart.png" alt="" loading="lazy">
+                                        </button>
+                                        <button type="button" class="focus:outline-none text-gray-400 hover:text-gray-500 py-2 px-1 border-t-2 text-sm tracking-wide font-medium border-transparent" x-on:click="tab = 3">
+                                            <img class="w-6 h-6 object-contain" src="./images/header/heart.png" alt="" loading="lazy">
+                                        </button>
+                                    </div>
+
+                                <div class="overflow-y-scroll">
+                                    <div x-show="tab === 1">
+                                        <p>a</p>
+                                    </div>
+                                    <div x-show="tab === 2">
+                                        <p>p</p>
+                                    </div>
+                                    <div x-show="tab === 3">
+                                        <p>c</p>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            
                     </div>
                 </div>
             </main>
