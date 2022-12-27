@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="33" viewBox="0 0 48 33">
+  <g id="Group_1363" data-name="Group 1363" transform="translate(0 0)">
+    <rect id="Rectangle_965" data-name="Rectangle 965" width="48" height="33" rx="4" transform="translate(0 0)" fill="#fff" opacity="0"/>
+    <g id="Group_1309" data-name="Group 1309" transform="translate(9.197 2.809)">
+      <path id="color-palette-svgrepo-com" d="M12.283,22.316V7.208l2.776-2.763a2.656,2.656,0,0,1,3.764,0L22.6,8.222a2.669,2.669,0,0,1,0,3.764Z" transform="translate(-0.271 0.357)" fill="#a7aab9"/>
+      <path id="color-palette-svgrepo-com-2" data-name="color-palette-svgrepo-com" d="M12.283,27.054V24.785l.013-.32,8.088-8.088h3.924a2.657,2.657,0,0,1,2.656,2.669v5.339a2.669,2.669,0,0,1-2.669,2.669Z" transform="translate(-0.271 -0.361)" fill="#a7aab9"/>
+      <path id="color-palette-svgrepo-com-3" data-name="color-palette-svgrepo-com" d="M0,2.656A2.666,2.666,0,0,1,2.669,0H8.008a2.669,2.669,0,0,1,2.669,2.669V24.023a2.669,2.669,0,0,1-2.669,2.669H2.669A2.669,2.669,0,0,1,0,24.023V2.669ZM5.339,22.689A1.335,1.335,0,1,0,4,21.354,1.335,1.335,0,0,0,5.339,22.689Z" transform="translate(0)" fill="#a7aab9"/>
+    </g>
+  </g>
+</svg>
