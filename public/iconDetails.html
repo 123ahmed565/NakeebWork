@@ -11,7 +11,7 @@
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.css" />
     <link rel="stylesheet" href="./css/style.css">
-    <title>Icon</title>
+    <title>Icon Details</title>
 </head>
 
 <body>
@@ -26,7 +26,6 @@
         style="backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px)">
         <img class="w-40 object-contain" loading="lazy"src="./images/logo/logo.png" alt="image logo">
         </div> 
-
         <!-- Sidebar backdrop -->
         <div x-show.in.out.opacity="isSidebarOpen" class="fixed inset-0 z-10 bg-black bg-opacity-20 lg:hidden"
             style="backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px)"></div>
@@ -176,7 +175,7 @@
         </aside>
 
         <!-- body Content -->
-        <div class="flex flex-col flex-1 h-full overflow-hidden bg-[#F4F7FC]">
+        <div class="flex flex-col flex-1 h-full overflow-hidden">
             <!-- Navbar -->
             <header class="bg-white flex-shrink-0 py-2">
                 <div class="flex items-center justify-between p-1">
@@ -276,102 +275,123 @@
                 </div>
             </header>
             <!-- Main content -->
-            <main class="flex-1 max-h-full p-2 overflow-hidden overflow-y-scroll">
+            <main class="flex-1 max-h-full p-2 overflow-hidden overflow-y-scroll bg-[#f4f7fc]">
                 <!-- grid content -->
-                <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-5 space-x-2">
-
-                    <div class="col-span-4 shadow-lg">
-                        <!-- catgeory -->
-                        <div class=" p-3 bg-white rounded">
-                            <h1 class="capitalize font-bold text-gray-600 text-xl">category</h1>
-                            <div class="flex items-center space-x-2 mt-2">
-                                <button class="capitalize text-gray-500 font-semibold bg-[#F5F7FC] rounded p-1">interaface</button>
-                                <button class="capitalize text-gray-500 font-semibold">social media</button>
-                                <button class="capitalize text-gray-500 font-semibold">animals</button>
-                                <button class="capitalize text-gray-500 font-semibold">music</button>
-                                <button class="capitalize text-gray-500 font-semibold">nature</button>
-                                <button class="capitalize text-gray-500 font-semibold">sea</button>
-                                <button class="capitalize text-gray-500 font-semibold">medical</button>
-                                <button class="capitalize text-gray-500 font-semibold">shapes</button>
-                                <button class="capitalize text-gray-500 font-semibold">weather</button>
-                            </div>
+                <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-5 space-x-2 bg-white p-2">
+                    <div class="col-span-4">
+                        <!-- option -->
+                        <div class="bg-[#f4f7fc] rounded p-2">
+                            <form class="flex items-center bg-white p-2 rounded">
+                                <!-- color picker -->
+                                <div class="">
+                                    <input class="w-8" type="color" id="favcolor" name="favcolor" value="#000">
+                                </div>
+                                <!-- reset option -->
+                                <div class="reset option bg-[#f4f7fc] pl-2 pr-2 rounded ml-3">
+                                    <i class="fas fa-undo mt-2 text-gray-500"></i>
+                                </div>
+                                <!-- name of font -->
+                                <div class="ml-auto mr-0">
+                                    <p class="flex items-center capitalize text-[#7E84A3] font-semibold">
+                                        <i
+                                            class="fa fa-dollar-sign mt-1 mr-1 bg-[#4285f4] rounded-full w-5 h-4 text-center text-white"></i>
+                                        By: mark goldberg
+                                    </p>
+                                </div>
+                            </form>
                         </div>
 
-                        <!-- sub categroy -->
-                        <div class="p-2 bg-white rounded mt-2">
-                            <div class="flex items-center justify-between mt-2">
-                                <!-- select options -->
-                                <div class="space-x-2">
-                                    <button class=" ml-2 capitalize text-gray-700 font-semibold bg-[#F2F6F5] focus:outline-none focus:bg-[#CFEFE7] rounded p-1">monocolor</button>
-                                    <button class="capitalize text-gray-700 font-semibold bg-[#F2F6F5] focus:outline-none focus:bg-[#CFEFE7] rounded p-1">multicolor</button>
-                                    <button class="capitalize text-gray-700 font-semibold bg-[#F2F6F5] focus:outline-none focus:bg-[#CFEFE7] rounded p-1">outlined</button>
-                                    <button class="capitalize text-gray-700 font-semibold bg-[#F2F6F5] focus:outline-none focus:bg-[#CFEFE7] rounded p-1">filled</button>
+                        
+                    <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-7 p-3 space-x-2 bg-[#f4f7fc]">
+                        <div class="col-span-3">
+                            <img class="mx-auto w-48 h-36 mt-3" src="./images/iconImage/iconImage.svg" alt="icon image" loading="lazy">
+                            <div class="flex justify-center items-center mt-10 space-x-3">
+                                <button class="bg-white pl-3 pr-3 pt-1 pb-1 rounded uppercase text-xl font-medium text-[#a7aab9]">pdf</button>
+                                <button class="bg-white pl-3 pr-3 pt-1 pb-1 rounded uppercase text-xl font-medium text-[#a7aab9]">jpg</button>
+                                <button class="bg-white pl-3 pr-3 pt-1 pb-1 rounded uppercase text-xl font-medium text-[#a7aab9]">png</button>
+                                <button class="bg-white pl-3 pr-3 pt-1 pb-1 rounded uppercase text-xl font-medium text-[#a7aab9]">svg</button>
+                                <button class="bg-white pl-3 pr-3 pt-1 pb-1 rounded font-semibold text-[#a7aab9]">
+                                    <i class="fa fa-heart text-red-500 text-xl"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-span-2 bg-white p-2 rounded">
+                            <p class="capitalize rounded text-center text-[#525667] font-semibold bg-[#f4f7fc] p-1">suggested colors</p>
+                            <div class="mt-2 bg-[#f4f7fc] rounded">
+                                <!-- suggested colors -->
+                                <div class="flex-wrap items-center p-2 text-center">
+                                    <button class="bg-black w-6 h-6 rounded-full border-0 shadow focus:outline-none focus:ring focus:ring-offset-2 focus:ring-[#3776dc]-8 mr-2"></button>
+                                    <button class="bg-[#FF0C3E] w-6 h-6 rounded-full border-0 shadow focus:outline-none focus:ring focus:ring-offset-2 focus:ring-[#3776dc]-8 mr-2"></button>
+                                    <button class="bg-[#FF8800] w-6 h-6 rounded-full border-0 shadow focus:outline-none focus:ring focus:ring-offset-2 focus:ring-[#3776dc]-8 mr-2"></button>
+                                    <button class="bg-[#FFE300] w-6 h-6 rounded-full border-0 shadow focus:outline-none focus:ring focus:ring-offset-2 focus:ring-[#3776dc]-8 mr-2"></button>
+                                    <button class="bg-[#9F631E] w-6 h-6 rounded-full border-0 shadow focus:outline-none focus:ring focus:ring-offset-2 focus:ring-[#3776dc]-8 mr-2"></button>
+                                    <button class="bg-[#79E62B] w-6 h-6 rounded-full border-0 shadow focus:outline-none focus:ring focus:ring-offset-2 focus:ring-[#3776dc]-8 mr-2"></button>
+                                    <button class="bg-[#FF5DCD] w-6 h-6 rounded-full border-0 shadow focus:outline-none focus:ring focus:ring-offset-2 focus:ring-[#3776dc]-8 mr-2"></button>
+                                    <button class="bg-[#3A53FF] w-6 h-6 rounded-full border-0 shadow focus:outline-none focus:ring focus:ring-offset-2 focus:ring-[#3776dc]-8 mr-2"></button>
+                                    <button class="bg-black w-6 h-6 rounded-full border-0 shadow focus:outline-none focus:ring focus:ring-offset-2 focus:ring-[#3776dc]-8 mr-2"></button>
+                                    <button class="bg-[#FF0C3E] w-6 h-6 rounded-full border-0 shadow focus:outline-none focus:ring focus:ring-offset-2 focus:ring-[#3776dc]-8 mr-2"></button>
+                                    <button class="bg-[#FF8800] w-6 h-6 rounded-full border-0 shadow focus:outline-none focus:ring focus:ring-offset-2 focus:ring-[#3776dc]-8 mr-2"></button>
+                                    <button class="bg-[#FFE300] w-6 h-6 rounded-full border-0 shadow focus:outline-none focus:ring focus:ring-offset-2 focus:ring-[#3776dc]-8 mr-2"></button>
+                                    <button class="bg-[#9F631E] w-6 h-6 rounded-full border-0 shadow focus:outline-none focus:ring focus:ring-offset-2 focus:ring-[#3776dc]-8 mr-2"></button>
+                                    <button class="bg-[#79E62B] w-6 h-6 rounded-full border-0 shadow focus:outline-none focus:ring focus:ring-offset-2 focus:ring-[#3776dc]-8 mr-2"></button>
+                                    <button class="bg-[#FF5DCD] w-6 h-6 rounded-full border-0 shadow focus:outline-none focus:ring focus:ring-offset-2 focus:ring-[#3776dc]-8 mr-2"></button>
+                                    <button class="bg-[#3A53FF] w-6 h-6 rounded-full border-0 shadow focus:outline-none focus:ring focus:ring-offset-2 focus:ring-[#3776dc]-8 mr-2"></button>
+                                    <button class="bg-black w-6 h-6 rounded-full border-0 shadow focus:outline-none focus:ring focus:ring-offset-2 focus:ring-[#3776dc]-8 mr-2"></button>
+                                    <button class="bg-[#FF0C3E] w-6 h-6 rounded-full border-0 shadow focus:outline-none focus:ring focus:ring-offset-2 focus:ring-[#3776dc]-8 mr-2"></button>
+                                    <button class="bg-[#FF8800] w-6 h-6 rounded-full border-0 shadow focus:outline-none focus:ring focus:ring-offset-2 focus:ring-[#3776dc]-8 mr-2"></button>
+                                    <button class="bg-[#FFE300] w-6 h-6 rounded-full border-0 shadow focus:outline-none focus:ring focus:ring-offset-2 focus:ring-[#3776dc]-8 mr-2"></button>
+                                    <button class="bg-[#9F631E] w-6 h-6 rounded-full border-0 shadow focus:outline-none focus:ring focus:ring-offset-2 focus:ring-[#3776dc]-8 mr-2"></button>
+                                    <button class="bg-[#79E62B] w-6 h-6 rounded-full border-0 shadow focus:outline-none focus:ring focus:ring-offset-2 focus:ring-[#3776dc]-8 mr-2"></button>
+                                    <button class="bg-[#FF5DCD] w-6 h-6 rounded-full border-0 shadow focus:outline-none focus:ring focus:ring-offset-2 focus:ring-[#3776dc]-8 mr-2"></button>
+                                    <button class="bg-[#3A53FF] w-6 h-6 rounded-full border-0 shadow focus:outline-none focus:ring focus:ring-offset-2 focus:ring-[#3776dc]-8 mr-2"></button>
+                                    <button class="bg-[#3A53FF] w-6 h-6 rounded-full border-0 shadow focus:outline-none focus:ring focus:ring-offset-2 focus:ring-[#3776dc]-8 mr-2"></button>
                                 </div>
-                                <!-- dropdown brand -->
-                                <div class="brand ml-auto mr-0">
-                                    <!-- start dropdown modal brand  -->
-                                    <div x-data="{
-                                        open: false,
-                                        toggle() {
-                                            if (this.open) {
-                                                return this.close()
-                                            }
-                                    
-                                            this.open = true
-                                        },
-                                        close(focusAfter) {
-                                            this.open = false
-                                            focusAfter && focusAfter.focus()
-                                        }
-                                    }" x-on:keydown.escape.prevent.stop="close($refs.button)"
-                                        x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
-                                        x-id="['dropdown-button']" class="relative ml-5">
-                                        <!-- Button -->
-                                        <button x-ref="button" x-on:click="toggle()" :aria-expanded="open"
-                                            :aria-controls="$id('dropdown-button')" type="button"
-                                            class="flex items-center justify-between border-0 capitalize text-gray-700 font-semibold bg-[#F5F7FC] rounded pl-3 pr-5 pt-2 pb-2">
-                                            <p>popular</p>
-                                            <i class="fas fa-chevron-down w-4 h-4 ml-7"></i>
-                                        </button>
-
-                                        <!-- Panel -->
-                                        <div x-ref="panel" x-show="open" x-transition.origin.top.left
-                                            x-on:click.outside="close($refs.button)" :id="$id('dropdown-button')"
-                                            style="display: none;" class="absolute w-full mt-2 z-20 bg-white rounded">
-                                            <div class="whitespace-nowrap">
-                                                <a href="#"
-                                                    class="flex items-center w-full px-4 py-2 text-left text-sm hover:bg-gray-100">
-                                                    <p class="ml-2 capitalize text-semibold text-gray-600">popular</p>
-                                                </a>
-
-                                                <a href="#"
-                                                    class="flex items-center w-full px-4 py-2 text-left text-sm hover:bg-gray-100">
-                                                    <p class="ml-2 capitalize text-semibold text-gray-600">trending</p>
-                                                </a>
-
-                                                <a href="#"
-                                                    class="flex items-center w-full px-4 py-2 text-left text-sm hover:bg-gray-100">
-                                                    <p class="ml-2 capitalize text-semibold text-gray-600">featured</p>
-                                                </a>
-                                            </div>
-                                        </div>
+                            </div>
+                        </div>
+                        <div class="col-span-2">
+                            <div class="bg-white rounded p-2 h-full">
+                                <form action="">
+                                    <!-- size -->
+                                    <label for="" class="capitalize font-medium text-[#525667] text-sm">size</label>
+                                    <div class="flex items-center mb-3">
+                                        <label for="customRange1" class="block font-medium text-sm mr-1">0</label>
+                                        <input id="customRange1" class="form-range w-full" type="range">
+                                        <label for="customRange1" class="block font-medium text-sm ml-1">1</label>
                                     </div>
-                                </div>
+                                    <!-- optical size -->
+                                    <label for="" class="capitalize font-medium text-[#525667] text-sm">optical size</label>
+                                    <div class="flex items-center">
+                                        <label for="customRange1" class="block font-medium text-sm mr-1">0</label>
+                                        <input id="customRange1" class="form-range w-full" type="range">
+                                        <label for="customRange1" class="block font-medium text-sm ml-1">100</label>
+                                    </div>
+                                    <!-- focused keywords -->
+                                    <p class="apitalize font-semibold text-[#525667] text-sm mt-3">focused keywords</p>
+                                    <!-- select options -->
+                                    <div class="space-x-2 mt-1 space-y-2">
+                                        <button class="ml-2 capitalize text-[#515566] text-sm font-semibold bg-[#F2F6F5] focus:outline-none focus:bg-[#CFEFE7] rounded p-1">tennis</button>
+                                        <button class="capitalize text-[#515566] text-sm font-semibold bg-[#F2F6F5] focus:outline-none focus:bg-[#CFEFE7] rounded p-1">ball</button>
+                                        <button class="capitalize text-[#515566] text-sm font-semibold bg-[#F2F6F5] focus:outline-none focus:bg-[#CFEFE7] rounded p-1">sport</button>
+                                        <button class="capitalize text-[#515566] text-sm font-semibold bg-[#F2F6F5] focus:outline-none focus:bg-[#CFEFE7] rounded p-1">player</button>
+                                        <button class="capitalize text-[#515566] text-sm font-semibold bg-[#F2F6F5] focus:outline-none focus:bg-[#CFEFE7] rounded p-1">racket</button>
+                                        <button class="capitalize text-[#515566] text-sm font-semibold bg-[#F2F6F5] focus:outline-none focus:bg-[#CFEFE7] rounded p-1">wimbledon</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
+                    </div>    
 
+                    <p class="mt-2 capitalize text-[#525667] text-2xl font-semibold">explore another icons</p>
                         <!-- Icons -->
                         <!-- md:h-[27rem] -->
                         <div
-                            class="flex flex-wrap pl-4 scrollHide overflow-y-auto max-h-full bg-white mt-2 justify-center">
+                        class="flex flex-wrap scrollHide overflow-y-auto max-h-full bg-white mt-2 justify-center">
                             <!-- single Icon -->
                             <div
                                 class="p-3 mt-2 mr-3 text-center rounded-xl bg-[#f4f7fc] w-40 hover:shadow-md cursor-pointer transition duration-150 ease-out">
                                 <!-- image -->
-                                <a href="./iconDetails.html">
-                                    <img loading="lazy" class="mt-6 rounded w-full h-24 object-contain"
+                                <img loading="lazy" class="mt-6 rounded w-full h-24 object-contain"
                                     src="./images/iconImage/iconImage.svg" alt="icon Image" loading="lazy">
-                                </a>
                                     <!-- icons -->
                                     <div class="flex items-center justify-center ms:justify-start space-x-3 mt-3">
                                         <a title="Save" class="bg-white rounded w-14 h-8"><i class="far fa-heart text-[#a7aab9] text-xl hover:text-[#4285f4]"></i></a >
@@ -640,12 +660,10 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="col-span-1 hidden md:block shadow-sm p-1 mt-5 md:mt-0 bg-white rounded">
                         <!-- image offer -->
                         <img class="w-full h-40 rounded" src="./images/rightSidebar/offer.png" alt="offer image"
                             loading="lazy">
-                            <!-- nav tabs -->
                     </div>
                 </div>
             </main>
@@ -695,4 +713,5 @@
     </script>
 
 </body>
+
 </html>
